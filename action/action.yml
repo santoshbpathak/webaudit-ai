@@ -54,8 +54,6 @@ runs:
     - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
       with:
         node-version: 22
-        cache: pnpm
-        cache-dependency-path: ${{ github.action_path }}/../pnpm-lock.yaml
 
     - name: Install WebAudit AI
       shell: bash
@@ -63,6 +61,15 @@ runs:
       run: |
         pnpm install --frozen-lockfile
         pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+        # Ubuntu 23.10+ (incl. GitHub's ubuntu-24.04 runners) restricts unprivileged user
+        # namespaces via AppArmor, which Chromium's sandbox needs. Lift it where we can;
+        # otherwise run without the sandbox (the runner VM is the isolation boundary).
+        if [ "$(sysctl -n kernel.apparmor_restrict_unprivileged_userns 2>/dev/null)" = "1" ]; then
+          if ! sudo -n sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1; then
+            echo "::warning::Chromium sandbox unavailable on this runner; auditing without it."
+            echo "WEBAUDIT_CHROME_NO_SANDBOX=1" >> "$GITHUB_ENV"
+          fi
+        fi
 
     - name: Run audit
       id: audit
@@ -106,7 +113,7 @@ runs:
         exit 0
 
     - name: Upload report
-      if: ${{ inputs.upload-artifact == 'true' && always() }}
+      if: ${{ inputs.upload-artifact == 'true' && always() && steps.audit.outputs.report-dir != '' }}
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: webaudit-report

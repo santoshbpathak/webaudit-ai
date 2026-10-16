@@ -35,6 +35,9 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+      # ubuntu-24.04 restricts unprivileged user namespaces (AppArmor); Chromium's sandbox
+      # needs them. Lift the restriction so tests run with the sandbox on, as users do.
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - name: Tests (unit, SSRF suite, fixture end-to-end)
         run: pnpm test
       - name: Build web app
@@ -59,6 +62,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+      # ubuntu-24.04 restricts unprivileged user namespaces (AppArmor); Chromium's sandbox
+      # needs them. Lift the restriction so tests run with the sandbox on, as users do.
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - run: pnpm e2e
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: failure()
