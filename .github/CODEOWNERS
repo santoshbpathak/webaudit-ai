@@ -1,0 +1,7 @@
+# Default reviewers for everything in the repository.
+* @santoshbpathak
+
+# Security-sensitive areas: changes here always need maintainer review.
+/packages/safety/ @santoshbpathak
+/.github/ @santoshbpathak
+/docker/ @santoshbpathak

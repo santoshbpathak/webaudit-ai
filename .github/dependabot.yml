@@ -1,5 +1,5 @@
-# Weekly, grouped updates. Majors arrive as separate PRs for deliberate review
-# (TypeScript majors are blocked on typescript-eslint support).
+# Weekly updates. Minor/patch bumps are grouped; majors arrive as individual PRs so each
+# can be reviewed (and reverted) on its own.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -10,14 +10,22 @@ updates:
       minor-and-patch:
         update-types: [minor, patch]
     ignore:
+      # TypeScript majors are blocked on typescript-eslint support.
       - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # Node type definitions track the oldest supported runtime (Node 22 / 24 LTS line).
+      - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }
     groups:
-      actions:
-        patterns: ["*"]
+      actions-minor-and-patch:
+        update-types: [minor, patch]
   - package-ecosystem: docker
     directory: /docker
     schedule: { interval: weekly }
+    ignore:
+      # The Playwright base image must match the `playwright` npm version exactly; bump
+      # both together by hand (Dockerfile FROM + package.json files).
+      - dependency-name: mcr.microsoft.com/playwright
