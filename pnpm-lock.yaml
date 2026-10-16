@@ -282,8 +282,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       chrome-launcher:
-        specifier: 1.2.1
-        version: 1.2.1
+        specifier: 1.2.2
+        version: 1.2.2
       lighthouse:
         specifier: 13.5.0
         version: 13.5.0(@opentelemetry/core@2.12.0(@opentelemetry/api@1.9.1))
@@ -2067,8 +2067,8 @@ packages:
     resolution: {integrity: sha512-WDrybc/gKFpTYQutKIK6UvfcuxijIZfMfXaYm8NMsPQxSYvf+13fXUJ4rztGGbJcBQ/GF55gvrZ0Bc0bj/mqvg==}
     engines: {node: '>=20.18.1'}
 
-  chrome-launcher@1.2.1:
-    resolution: {integrity: sha512-qmFR5PLMzHyuNJHwOloHPAHhbaNglkfeV/xDtt5b7xiFFyU1I+AZZX0PYseMuhenJSSirgxELYIbswcoc+5H4A==}
+  chrome-launcher@1.2.2:
+    resolution: {integrity: sha512-sI90u5qf3854bTrWsQMMdsQfSjjMbeSn7QtxVb9zrikf+QgMfHQ71KepHW7ZfixQKrDlAFKb+qnVlSR+xepBzw==}
     engines: {node: '>=12.13.0'}
     hasBin: true
 
@@ -4706,7 +4706,7 @@ snapshots:
       undici: 7.30.0
       whatwg-mimetype: 4.0.0
 
-  chrome-launcher@1.2.1:
+  chrome-launcher@1.2.2:
     dependencies:
       '@types/node': 24.19.2
       escape-string-regexp: 4.0.0
@@ -5191,7 +5191,7 @@ snapshots:
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       axe-core: 4.14.0
-      chrome-launcher: 1.2.1
+      chrome-launcher: 1.2.2
       configstore: 7.1.0
       csp_evaluator: 1.1.8
       devtools-protocol: 0.0.1687809
