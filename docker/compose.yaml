@@ -1,0 +1,37 @@
+# Local: `docker compose -f docker/compose.yaml up` → http://127.0.0.1:3000
+# The port is published on loopback only. To expose it, set WEBAUDIT_ACCESS_TOKEN and
+# change the port mapping deliberately.
+services:
+  webaudit:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: webaudit-ai:local
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      # Inside the container the server binds 0.0.0.0, so a token is required.
+      WEBAUDIT_ACCESS_TOKEN: ${WEBAUDIT_ACCESS_TOKEN:?set WEBAUDIT_ACCESS_TOKEN (16+ chars) in your shell or .env}
+      WEBAUDIT_AI_PROVIDER: ${WEBAUDIT_AI_PROVIDER:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      WEBAUDIT_OPENAI_MODEL: ${WEBAUDIT_OPENAI_MODEL:-}
+    volumes:
+      - webaudit-data:/data
+    shm_size: "1gb"
+    restart: unless-stopped
+
+  # Read-only public demo serving the bundled sample audits:
+  #   docker compose -f docker/compose.yaml --profile demo up demo
+  demo:
+    profiles: ["demo"]
+    image: webaudit-ai:local
+    ports:
+      - "127.0.0.1:3001:3000"
+    environment:
+      WEBAUDIT_DEMO: "1"
+      WEBAUDIT_DATA_DIR: /app/examples/demo-data
+
+volumes:
+  webaudit-data:

@@ -1,0 +1,49 @@
+name: Bug report
+description: Something doesn't work — a crash, an error message, a wrong page in the UI or a broken export.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Please do not include private or client website data, credentials, cookies or unpublished URLs.** If a finding itself looks wrong, use the *Audit accuracy* template instead.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Include any error text.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: A public URL, the bundled fixture site (`pnpm fixture`), or a minimal HTML snippet helps most.
+      placeholder: |
+        1. Start an audit of … in Smart mode
+        2. Open the Issues tab
+        3. …
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did it happen?
+      options: [Web UI, CLI, GitHub Action, Docker, Exported report, Optional AI, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `pnpm webaudit doctor`
+      description: Lists your Node version and checks the data directory, SQLite and Chromium. Remove any paths you consider private.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or a commit SHA
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [macOS, Linux, Windows, Docker]

@@ -1,0 +1,31 @@
+{
+  "name": "@webaudit/pipeline",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./create": "./src/create.ts",
+    "./artifacts": "./src/artifacts.ts",
+    "./reports": "./src/reports.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@webaudit/browser": "workspace:*",
+    "@webaudit/core": "workspace:*",
+    "@webaudit/crawler": "workspace:*",
+    "@webaudit/db": "workspace:*",
+    "@webaudit/engines": "workspace:*",
+    "@webaudit/modules": "workspace:*",
+    "@webaudit/queue": "workspace:*",
+    "@webaudit/report": "workspace:*",
+    "@webaudit/safety": "workspace:*",
+    "@webaudit/scoring": "workspace:*",
+    "playwright": "1.64.1"
+  },
+  "devDependencies": {
+    "@webaudit/fixture-site": "workspace:*"
+  }
+}

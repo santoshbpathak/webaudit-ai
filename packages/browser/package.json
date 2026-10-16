@@ -1,0 +1,21 @@
+{
+  "name": "@webaudit/browser",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@webaudit/core": "workspace:*",
+    "@webaudit/safety": "workspace:*",
+    "playwright": "1.64.1"
+  },
+  "devDependencies": {
+    "@webaudit/fixture-site": "workspace:*"
+  }
+}

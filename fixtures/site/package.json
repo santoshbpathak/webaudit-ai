@@ -1,0 +1,14 @@
+{
+  "name": "@webaudit/fixture-site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Purpose-built test website with planted defects. Used by tests, demos and sample reports.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

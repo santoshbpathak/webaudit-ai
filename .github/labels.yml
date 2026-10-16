@@ -1,0 +1,16 @@
+# Repository labels. Create them once with the GitHub CLI after publishing:
+#   ruby -ryaml -e 'YAML.load_file(".github/labels.yml").each{|l| system("gh","label","create",l["name"],"--color",l["color"],"--description",l["description"],"--force")}'
+# (or create them by hand under Issues → Labels).
+- { name: "good first issue", color: "7057ff", description: "Small, well-scoped, good for newcomers" }
+- { name: "help wanted", color: "008672", description: "Maintainers would welcome a contribution" }
+- { name: "bug", color: "d73a4a", description: "Something doesn't work" }
+- { name: "enhancement", color: "a2eeef", description: "New feature or improvement" }
+- { name: "documentation", color: "0075ca", description: "Docs and guides" }
+- { name: "audit-accuracy", color: "e99695", description: "False positive/negative or misleading finding" }
+- { name: "seo", color: "5ce0be", description: "M01 Technical SEO, M09 Content, M10 Architecture" }
+- { name: "accessibility", color: "1d76db", description: "M03 Accessibility and related checks" }
+- { name: "analytics", color: "fbca04", description: "M04 GA4/GTM, M05 Ad pixels" }
+- { name: "privacy", color: "b60205", description: "M08 Consent, M06 opt-ins, redaction" }
+- { name: "performance", color: "f9a03f", description: "M02 Lighthouse and app performance" }
+- { name: "security", color: "000000", description: "Security hardening (report vulnerabilities privately)" }
+- { name: "needs-repro", color: "ededed", description: "Waiting for a public or synthetic reproduction" }

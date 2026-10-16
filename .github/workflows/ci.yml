@@ -1,0 +1,175 @@
+name: CI
+
+# Safe for public pull requests: read-only token, no secrets, no pull_request_target.
+# Third-party actions are pinned to commit SHAs (Dependabot keeps them current).
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+      - name: Tests (unit, SSRF suite, fixture end-to-end)
+        run: pnpm test
+      - name: Build web app
+        run: pnpm --filter @webaudit/web build
+
+  e2e:
+    # Browser tests of the UI: navigation, filters, evidence sheet, theme, axe (both themes),
+    # and the live flow form → crawl → overview against the fixture site.
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+      - run: pnpm e2e
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: failure()
+        with:
+          name: e2e-traces
+          path: apps/web/test-results
+          retention-days: 7
+
+  action-selftest:
+    # Marketing QA in CI against the bundled fixture site, exercising the published Action.
+    name: GitHub Action self-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Start fixture site
+        run: (FIXTURE_PORT=4100 pnpm fixture &) && sleep 3
+      - name: Audit fixture with the Action
+        id: wa
+        uses: ./action
+        with:
+          url: http://127.0.0.1:4100/
+          allow-private-host: 127.0.0.1
+          lighthouse-pages: "1"
+          budgets: "issues-critical<=0"
+      - name: Assert planted defects were found
+        env:
+          GROUPS: ${{ steps.wa.outputs.issue-groups }}
+          REPORT_DIR: ${{ steps.wa.outputs.report-dir }}
+        run: |
+          test "$GROUPS" -gt 50
+          grep -q "M01-META-DESC-MISSING" "$REPORT_DIR/findings.csv"
+
+  docker:
+    name: Docker image smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Build image
+        run: docker build -f docker/Dockerfile -t webaudit-ai:ci .
+      - name: Smoke test (refuses public bind without token, healthy with token)
+        run: |
+          ! docker run --rm webaudit-ai:ci
+          docker run -d --name wa -e WEBAUDIT_ACCESS_TOKEN=ci-token-0123456789abcdef -p 127.0.0.1:3000:3000 webaudit-ai:ci
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:3000/api/health && break; sleep 2; done
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/)" = "401"
+          test "$(curl -s -o /dev/null -w '%{http_code}' -H 'Authorization: Bearer ci-token-0123456789abcdef' http://127.0.0.1:3000/)" = "200"
+          docker rm -f wa
+
+  security:
+    name: Secrets, dependencies, configuration
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Secret scan (gitleaks, full history, checksum-verified binary)
+        env:
+          GITLEAKS_VERSION: 8.30.1
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          curl -sSfL -o gitleaks.tgz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  gitleaks.tgz" | sha256sum -c -
+          tar -xzf gitleaks.tgz gitleaks
+          ./gitleaks git . --config .gitleaks.toml --redact --no-banner
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Dependency audit (production dependencies, high and above)
+        run: pnpm audit --prod --audit-level high
+      - name: Security-sensitive configuration
+        run: |
+          set -e
+          # No real env files committed (only .env.example).
+          ! git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$'
+          # The private-host SSRF exemption must never be baked into images or compose files.
+          ! grep -nE '^\s*(ENV\s+)?WEBAUDIT_ALLOW_PRIVATE_HOSTS' docker/Dockerfile docker/compose.yaml
+          # The container must not run as root, and compose must publish on loopback only.
+          grep -q '^USER pwuser' docker/Dockerfile
+          ! grep -nE '^\s*-\s*"?[0-9]+:[0-9]+' docker/compose.yaml
+          # Workflows must not use pull_request_target.
+          ! grep -rnE '^\s*pull_request_target\s*:' .github/workflows
+
+  docs:
+    name: Markdown links (local)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Check relative links and images in Markdown
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --no-progress --exclude-path node_modules --exclude-path examples './**/*.md'
+          fail: true

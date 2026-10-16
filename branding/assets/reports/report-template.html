@@ -1,0 +1,303 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Audit report template · WebAudit AI</title>
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url(../fonts/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(../fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url(../fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;src:url(../fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;src:url(../fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2")}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,sans-serif;color:#0B1220;background:#e9edf3;font-size:10.5pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;background:#fff;margin:0 auto 12mm;padding:18mm 18mm 22mm;position:relative;overflow:hidden;page-break-after:always}
+@media print{body{background:#fff}.page{margin:0}}
+.mono{font-family:"JetBrains Mono",monospace}
+h1{font-size:28pt;letter-spacing:-.02em;line-height:1.1;font-weight:600}h2{font-size:15pt;font-weight:600;margin-bottom:4mm;letter-spacing:-.01em}h3{font-size:10.5pt;font-weight:600;margin:5mm 0 2mm}
+.kick{display:flex;gap:2mm;align-items:center;color:#0B7A66;font-weight:600;font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3mm}.kick i{width:2.2mm;height:2.2mm;background:#0E9478;transform:rotate(45deg);display:inline-block}
+.muted{color:#566275}.small{font-size:8.5pt}
+.cover{background:#0B1220;color:#F2F6FD;padding:22mm}
+.cover .muted{color:#9AABC2}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:9mm 9mm}
+.cover-inner{position:relative;height:100%;display:flex;flex-direction:column}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:2mm 8mm;margin-top:auto;font-size:9.5pt}
+.meta dt{color:#9AABC2}.meta dd{margin:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:5mm 0}
+.stat{border:1px solid #DFE5EE;border-radius:3mm;padding:3.5mm}.stat b{display:block;font-size:17pt;font-weight:600;font-variant-numeric:tabular-nums}.stat span{font-size:8pt;color:#566275}
+.bar{display:flex;gap:.6mm;height:3mm;border-radius:1mm;overflow:hidden;margin:2mm 0 3mm}
+.sev{display:inline-flex;align-items:center;gap:1.4mm;font-weight:500}.sev-ic{display:inline-flex}
+.legend{display:flex;gap:6mm;flex-wrap:wrap;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9pt}th{text-align:left;font-weight:500;color:#566275;font-size:7.5pt;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #C3CCDA;padding:1.6mm 2mm}td{border-bottom:1px solid #DFE5EE;padding:2mm;vertical-align:top}td.n{text-align:right;font-variant-numeric:tabular-nums}
+.meter{height:1.6mm;background:#E7ECF3;border-radius:1mm;overflow:hidden;margin-top:1mm}.meter i{display:block;height:100%;background:#0B7A66}
+.conf{border:1px solid #C3CCDA;border-radius:1mm;padding:.3mm 1.6mm;font-size:7.5pt;color:#334155;white-space:nowrap}
+.ev{border:1px solid #DFE5EE;border-radius:3mm;overflow:hidden}.ev header{background:#F1F4F9;padding:2.5mm 3.5mm;font-size:8.5pt;display:flex;justify-content:space-between}.ev dl{padding:3.5mm;display:grid;grid-template-columns:28mm 1fr;gap:2mm;font-size:8.5pt}.ev dt{color:#566275}.ev dd{margin:0;word-break:break-all}.ev pre{background:#F6F8FB;border-radius:2mm;padding:2.5mm;white-space:pre-wrap;font-size:7.5pt}
+.callout{border-left:2px solid #0E9478;background:#F1F4F9;padding:3mm 4mm;font-size:9pt;margin:4mm 0}
+ol.recs{padding-left:5mm;display:grid;gap:3mm}ol.recs li{padding-left:1mm}
+.rfoot{position:absolute;left:18mm;right:18mm;bottom:10mm;display:flex;justify-content:space-between;font-size:7.5pt;color:#566275;border-top:1px solid #DFE5EE;padding-top:2.5mm}
+.cover .rfoot{display:none}
+.sample{position:absolute;top:8mm;right:18mm;font-size:7pt;color:#566275;border:1px solid #DFE5EE;border-radius:1mm;padding:.5mm 2mm}
+.cover .sample{color:#9AABC2;border-color:#344660}
+</style></head><body>
+
+<section class="page cover"><div class="cover-grid"></div><span class="sample">Template · sample data from the bundled fixture site</span><div class="cover-inner">
+<img src="../logos/primary-horizontal-reverse.svg" style="height:11mm;width:auto;align-self:flex-start" alt="WebAudit AI">
+<div style="margin-top:58mm"><div class="kick" style="color:#5CE0BE"><i style="background:#5CE0BE"></i>Website audit report</div>
+<h1 style="font-size:34pt">127.0.0.1</h1><p class="muted" style="font-size:13pt;margin-top:4mm">121 issue groups found on 127.0.0.1 across 138 pages; 37 rated high or critical.</p></div>
+<dl class="meta"><dt>Start URL</dt><dd class="mono">http://127.0.0.1:4321/</dd><dt>Mode</dt><dd>smart · mobile</dd><dt>Completed</dt><dd>16 October 2026</dd><dt>Status</dt><dd>completed</dd><dt>Engine</dt><dd class="mono">webaudit 0.1.0 · axe-core 4.13.0 · Lighthouse 13.5.0</dd></dl>
+</div><footer class="rfoot"><span>WebAudit AI · 127.0.0.1 · 16 October 2026</span><span>Page 1</span></footer></section>
+
+<section class="page"><span class="sample">Template · sample data</span><div class="kick"><i></i>Executive summary</div><h2>What we found</h2>
+<p>121 issue groups found on 127.0.0.1 across 138 pages; 37 rated high or critical.</p><p class="muted small" style="margin-top:2mm">Smart audit of http://127.0.0.1:4321/ — 139 URLs checked out of 145 discovered (1 blocked by robots.txt, 5 skipped, 0 failed to fetch). Browser checks ran on 25 sampled page(s).</p>
+<div class="stats"><div class="stat"><b>121</b><span>Issue groups</span></div><div class="stat"><b>139</b><span>URLs checked</span></div><div class="stat"><b>25</b><span>Browser-sampled</span></div><div class="stat"><b>99.5</b><span>Lighthouse lab (median)</span></div></div>
+<h3>Issue groups by severity</h3>
+<div class="bar"><i style="width:30.57851239669421%;background:#EC835A"></i><i style="width:40.49586776859504%;background:#FAB219"></i><i style="width:28.92561983471074%;background:#4C8DF6"></i></div>
+<div class="legend"><span><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span> <b>37</b></span><span><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span> <b>49</b></span><span><span class="sev"><span class="sev-ic" style="color:#4C8DF6"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" />
+</svg>
+</span>Low</span> <b>35</b></span></div>
+<div class="callout">Browser-based findings (performance, accessibility, analytics, pixels, forms, UX, consent) reflect 25 sampled page(s), not all 139. Each finding shows its exact tested denominator.</div>
+<h3>Category results <span class="muted small">— checks passed / checks evaluated</span></h3>
+<table><thead><tr><th>Category</th><th class="n">Pages tested</th><th class="n">Groups</th><th style="width:38%">Checks passed</th></tr></thead><tbody>
+<tr><td>Technical SEO</td><td class="n">139</td><td class="n">35</td><td>74% <span class="muted small">(1491/2016)</span><div class="meter"><i style="width:73.95833333333334%"></i></div></td></tr><tr><td>Performance</td><td class="n">2</td><td class="n">0</td><td>100% <span class="muted small">(12/12)</span><div class="meter"><i style="width:100%"></i></div></td></tr><tr><td>Accessibility</td><td class="n">25</td><td class="n">16</td><td>95% <span class="muted small">(677/712)</span><div class="meter"><i style="width:95.08426966292134%"></i></div></td></tr><tr><td>GA4 / GTM</td><td class="n">25</td><td class="n">4</td><td>82% <span class="muted small">(78/95)</span><div class="meter"><i style="width:82.10526315789474%"></i></div></td></tr><tr><td>Ad tracking</td><td class="n">3</td><td class="n">1</td><td>83% <span class="muted small">(5/6)</span><div class="meter"><i style="width:83.33333333333334%"></i></div></td></tr><tr><td>Lead forms</td><td class="n">2</td><td class="n">10</td><td>33% <span class="muted small">(5/15)</span><div class="meter"><i style="width:33.33333333333333%"></i></div></td></tr><tr><td>CRO / UX</td><td class="n">25</td><td class="n">19</td><td>47% <span class="muted small">(47/100)</span><div class="meter"><i style="width:47%"></i></div></td></tr><tr><td>Privacy / consent</td><td class="n">10</td><td class="n">22</td><td>24% <span class="muted small">(9/37)</span><div class="meter"><i style="width:24.324324324324326%"></i></div></td></tr><tr><td>Content</td><td class="n">135</td><td class="n">10</td><td>55% <span class="muted small">(301/552)</span><div class="meter"><i style="width:54.528985507246375%"></i></div></td></tr><tr><td>Architecture</td><td class="n">135</td><td class="n">4</td><td>69% <span class="muted small">(151/218)</span><div class="meter"><i style="width:69.26605504587155%"></i></div></td></tr>
+</tbody></table>
+<footer class="rfoot"><span>WebAudit AI · 127.0.0.1 · 16 October 2026</span><span>Page 2</span></footer></section>
+
+<section class="page"><span class="sample">Template · sample data</span><div class="kick"><i></i>Priorities</div><h2>Top issues and recommendations</h2>
+<table><thead><tr><th>#</th><th>Issue</th><th>Severity</th><th>Confidence</th><th class="n">Affected / tested</th></tr></thead><tbody>
+<tr><td class="n">1</td><td>Touch targets too small<div class="mono muted small">M03-AXE-TARGET-SIZE · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Confirmed</span></td><td class="n">10 / 10</td></tr><tr><td class="n">2</td><td>Main content identical to another page<div class="mono muted small">M09-EXACT-DUPLICATE · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span></td><td><span class="conf">Confirmed</span></td><td class="n">119 / 120</td></tr><tr><td class="n">3</td><td>Duplicate title across pages<div class="mono muted small">M01-TITLE-DUPLICATE · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span></td><td><span class="conf">Confirmed</span></td><td class="n">119 / 120</td></tr><tr><td class="n">4</td><td>Page scrolls horizontally on the tested viewport<div class="mono muted small">M07-HORIZONTAL-OVERFLOW · /trap/*</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Confirmed</span></td><td class="n">5 / 5</td></tr><tr><td class="n">5</td><td>No mobile viewport meta tag<div class="mono muted small">M01-VIEWPORT-MISSING · /trap/*</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Confirmed</span></td><td class="n">5 / 5</td></tr><tr><td class="n">6</td><td>No GA4 tag or hit observed on this page<div class="mono muted small">M04-GA4-NOT-OBSERVED · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Potential</span></td><td class="n">10 / 10</td></tr><tr><td class="n">7</td><td>No GA4 tag or hit observed on this page<div class="mono muted small">M04-GA4-NOT-OBSERVED · /trap/*</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Potential</span></td><td class="n">5 / 5</td></tr><tr><td class="n">8</td><td>Missing meta description<div class="mono muted small">M01-META-DESC-MISSING · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span></td><td><span class="conf">Confirmed</span></td><td class="n">11 / 120</td></tr><tr><td class="n">9</td><td>Tap targets smaller than 24×24 px<div class="mono muted small">M07-SMALL-TAP-TARGETS · /large/:n</div></td><td><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span></td><td><span class="conf">Confirmed</span></td><td class="n">10 / 10</td></tr><tr><td class="n">10</td><td>Touch targets too small<div class="mono muted small">M03-AXE-TARGET-SIZE · /blog/*</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="12"
+  height="12"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Confirmed</span></td><td class="n">2 / 2</td></tr>
+</tbody></table>
+<h3>Recommended actions</h3>
+<ol class="recs"><li><b>Touch targets too small.</b> Fix the affected elements as described in the axe-core guidance.</li><li><b>Main content identical to another page.</b> Consolidate duplicates with a 301 redirect or a canonical to the preferred URL.</li><li><b>Duplicate title across pages.</b> Give each page a unique title.</li><li><b>Page scrolls horizontally on the tested viewport.</b> Constrain the widest element (tables, images, embeds) with max-width:100% or responsive wrappers.</li><li><b>No mobile viewport meta tag.</b> Add &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;.</li></ol>
+<footer class="rfoot"><span>WebAudit AI · 127.0.0.1 · 16 October 2026</span><span>Page 3</span></footer></section>
+
+<section class="page"><span class="sample">Template · sample data</span><div class="kick"><i></i>Evidence</div><h2>How findings are evidenced</h2>
+<p class="muted">Every finding records what was observed so a developer can reproduce it. Sensitive parameters are redacted before storage.</p>
+<div class="ev" style="margin-top:5mm"><header><span class="mono">http://127.0.0.1:4321/blog/</span><span class="mono muted">fnd_4e4fe47e286f460eae5d</span></header><dl>
+<dt>Rule</dt><dd class="mono">M01-BROKEN-INTERNAL-LINK</dd>
+<dt>Selector</dt><dd class="mono">a[href*=&quot;/blog/missing-post&quot;]</dd>
+
+
+<dt>Reproduce</dt><dd><ol style="padding-left:4mm"><li>Open http://127.0.0.1:4321/blog/</li><li>Find links to: http://127.0.0.1:4321/blog/missing-post</li><li>Follow them and observe the error</li></ol></dd>
+<dt>Recommended</dt><dd>Update or remove the links to: http://127.0.0.1:4321/blog/missing-post (404)</dd></dl></div>
+<h3 style="margin-top:9mm">Methodology</h3>
+<p class="small">Pages are discovered from robots.txt, sitemaps and internal links. HTTP checks run on every fetched page; browser checks (performance, accessibility, tags, forms, UX, consent) run on a stratified sample. Issues are grouped by rule and inferred page template and ranked by a transparent priority index: severity × reach × confidence × importance.</p>
+<h3>Limitations</h3><ul class="small" style="padding-left:4mm"><li>Automated checks cannot establish legal compliance (privacy, consent, accessibility) or guarantee ranking, traffic or conversion outcomes.</li><li>Performance numbers are Lighthouse lab measurements, not real-user field data.</li><li>Tags gated behind consent, logins, ad blockers or later user actions may not be observed.</li><li>1 URL(s) were excluded by robots.txt and not audited.</li></ul>
+<footer class="rfoot"><span>WebAudit AI · 127.0.0.1 · 16 October 2026</span><span>Page 4</span></footer></section>
+</body></html>

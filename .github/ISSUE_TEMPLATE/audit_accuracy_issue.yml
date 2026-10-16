@@ -1,0 +1,95 @@
+name: Audit accuracy (false positive / false negative)
+description: A check flagged something it shouldn't have, missed something, or its explanation is misleading.
+labels: [audit-accuracy]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Rule reviews from SEO, accessibility, analytics and privacy practitioners make WebAudit AI better — thank you.
+
+        > ⚠️ **Do not disclose private or sensitive website information.** Only share pages that are already public, or reproduce the problem with a minimal synthetic HTML example. Never include credentials, cookies, personal data, client names or unpublished URLs. Redact screenshots.
+  - type: input
+    id: rule
+    attributes:
+      label: Rule id
+      description: Shown in the evidence panel and in docs/rules.md.
+      placeholder: M08-TRACKING-BEFORE-CONSENT
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Audit category
+      options:
+        - M01 Technical SEO
+        - M02 Performance
+        - M03 Accessibility
+        - M04 GA4 / GTM
+        - M05 Ad pixels
+        - M06 Lead forms
+        - M07 CRO / UX
+        - M08 Consent
+        - M09 Content
+        - M10 Architecture
+        - Scoring / prioritisation
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of problem
+      options:
+        - False positive (flagged, but not an issue)
+        - False negative (real issue, not flagged)
+        - Wrong severity or confidence
+        - Misleading explanation or remediation
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Public URL or synthetic reproducible example
+      description: A public URL, or a minimal HTML snippet that reproduces it.
+      render: html
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected finding
+      description: What should the result be, and why? Links to specifications or vendor docs help.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual finding
+      description: What WebAudit AI reported (status, severity, confidence, affected pages).
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Audit configuration
+      description: Mode (Quick/Smart/Deep), device, page limit, sample size, any path rules.
+      placeholder: Smart, mobile, 500 pages, sample 30
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: The evidence panel contents (selector, snippet, request) — redact anything sensitive.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Tool version or commit
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: checkboxes
+    id: sharing
+    attributes:
+      label: Sharing
+      options:
+        - label: The page or example above can be shared publicly, and I have removed any private or sensitive information.
+          required: true

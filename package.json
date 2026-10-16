@@ -1,0 +1,40 @@
+{
+  "name": "webaudit-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source, local-first website intelligence for marketers: technical SEO, accessibility, analytics, ad pixels, UX and consent signals with evidence-backed findings and optional AI.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --filter=@webaudit/web --filter=@webaudit/cli",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "turbo run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fixture": "pnpm --filter @webaudit/fixture-site start",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "webaudit": "node apps/cli/bin/webaudit.js",
+    "examples": "node scripts/build-examples.mjs",
+    "docs:rules": "pnpm --filter @webaudit/modules docs",
+    "e2e": "pnpm --filter @webaudit/web build && pnpm --filter @webaudit/web e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.12.0",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "turbo": "2.11.8",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vitest": "5.0.4"
+  }
+}

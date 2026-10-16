@@ -1,0 +1,29 @@
+name: Documentation issue
+description: Something in the docs or guides is unclear, wrong, outdated or missing.
+labels: [documentation]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or section
+      placeholder: docs/marketing/analytics-audit-guide.md — "How to interpret results"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      options: [Unclear or too technical, Incorrect, Outdated, Missing, Broken link or image]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details and suggested wording
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Written for
+      options: [Marketers, Developers, Both]

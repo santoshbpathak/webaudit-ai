@@ -1,0 +1,121 @@
+name: "WebAudit AI"
+description: "Marketing QA in CI: audit a site for SEO, accessibility, GA4/GTM, ad pixels, forms, UX and consent signals; fail on budgets."
+author: "webaudit-ai"
+branding:
+  icon: "search"
+  color: "blue"
+
+inputs:
+  url:
+    description: "Start URL to audit (public, or a preview deployment)."
+    required: true
+  mode:
+    description: "quick | smart | deep"
+    default: "smart"
+  max-urls:
+    description: "Maximum URLs to fetch."
+    default: "100"
+  sample:
+    description: "Pages that receive browser checks (smart mode)."
+    default: "15"
+  lighthouse-pages:
+    description: "Pages to run Lighthouse on (0 disables)."
+    default: "3"
+  device:
+    description: "mobile | desktop"
+    default: "mobile"
+  fail-on:
+    description: "Fail if any issue group is at or above this severity (critical|high|medium|low). Empty = never."
+    default: ""
+  budgets:
+    description: "Newline- or space-separated budgets, e.g. 'lh-performance>=80 issues-high<=0 ga4-missing-pages==0'."
+    default: ""
+  allow-private-host:
+    description: "Comma-separated private hosts to permit (e.g. a localhost preview server in the same job). Leave empty for public URLs."
+    default: ""
+  upload-artifact:
+    description: "Upload the HTML/JSON/CSV report as a workflow artifact."
+    default: "true"
+
+outputs:
+  report-dir:
+    description: "Directory containing report.html, report.json, findings.csv, summary.md."
+    value: ${{ steps.audit.outputs.report-dir }}
+  issue-groups:
+    description: "Number of issue groups found."
+    value: ${{ steps.audit.outputs.issue-groups }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      with:
+        version: 9.12.0
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      with:
+        node-version: 22
+        cache: pnpm
+        cache-dependency-path: ${{ github.action_path }}/../pnpm-lock.yaml
+
+    - name: Install WebAudit AI
+      shell: bash
+      working-directory: ${{ github.action_path }}/..
+      run: |
+        pnpm install --frozen-lockfile
+        pnpm --filter @webaudit/browser exec playwright install --with-deps chromium
+
+    - name: Run audit
+      id: audit
+      shell: bash
+      working-directory: ${{ github.action_path }}/..
+      # Inputs reach the shell only through env vars (never ${{ }} inside run:), so a
+      # caller passing untrusted values (PR titles, dispatch inputs) cannot inject commands.
+      env:
+        WA_URL: ${{ inputs.url }}
+        WA_BUDGETS: ${{ inputs.budgets }}
+        WA_MODE: ${{ inputs.mode }}
+        WA_MAX_URLS: ${{ inputs.max-urls }}
+        WA_SAMPLE: ${{ inputs.sample }}
+        WA_LH_PAGES: ${{ inputs.lighthouse-pages }}
+        WA_DEVICE: ${{ inputs.device }}
+        WA_FAIL_ON: ${{ inputs.fail-on }}
+        WA_ALLOW_PRIVATE: ${{ inputs.allow-private-host }}
+      run: |
+        set +e
+        set -f
+        bad() { echo "::error::Invalid $1"; exit 2; }
+        [[ "$WA_MODE" =~ ^(quick|smart|deep)$ ]] || bad mode
+        [[ "$WA_DEVICE" =~ ^(mobile|desktop)$ ]] || bad device
+        [[ "$WA_MAX_URLS" =~ ^[0-9]{1,5}$ ]] || bad max-urls
+        [[ "$WA_SAMPLE" =~ ^[0-9]{1,4}$ ]] || bad sample
+        [[ "$WA_LH_PAGES" =~ ^[0-9]{1,3}$ ]] || bad lighthouse-pages
+        [[ -z "$WA_FAIL_ON" || "$WA_FAIL_ON" =~ ^(critical|high|medium|low)$ ]] || bad fail-on
+        OUT="$RUNNER_TEMP/webaudit-report"
+        ARGS=(audit "$WA_URL" --mode "$WA_MODE" --max-urls "$WA_MAX_URLS" --sample "$WA_SAMPLE" \
+              --lighthouse-pages "$WA_LH_PAGES" --device "$WA_DEVICE" --out "$OUT" --json)
+        if [ -n "$WA_FAIL_ON" ]; then ARGS+=(--fail-on "$WA_FAIL_ON"); fi
+        if [ -n "$WA_BUDGETS" ]; then ARGS+=(--budget); read -ra BUDGETS <<< "$(echo "$WA_BUDGETS" | tr '\n' ' ')"; ARGS+=("${BUDGETS[@]}"); fi
+        GLOBAL=(--data-dir "$RUNNER_TEMP/webaudit-data")
+        if [ -n "$WA_ALLOW_PRIVATE" ]; then GLOBAL+=(--allow-private-host "$WA_ALLOW_PRIVATE"); fi
+        node apps/cli/bin/webaudit.js "${GLOBAL[@]}" "${ARGS[@]}" > "$RUNNER_TEMP/webaudit.json"
+        CODE=$?
+        echo "report-dir=$OUT" >> "$GITHUB_OUTPUT"
+        echo "issue-groups=$(node -e "try{console.log(require(process.argv[1]).groups)}catch{console.log(0)}" "$RUNNER_TEMP/webaudit.json")" >> "$GITHUB_OUTPUT"
+        if [ -f "$OUT/summary.md" ]; then cat "$OUT/summary.md" >> "$GITHUB_STEP_SUMMARY"; fi
+        echo "exit-code=$CODE" >> "$GITHUB_OUTPUT"
+        exit 0
+
+    - name: Upload report
+      if: ${{ inputs.upload-artifact == 'true' && always() }}
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      with:
+        name: webaudit-report
+        path: ${{ steps.audit.outputs.report-dir }}
+        if-no-files-found: ignore
+
+    - name: Enforce budgets
+      shell: bash
+      run: |
+        CODE="${{ steps.audit.outputs.exit-code }}"
+        if [ "$CODE" = "1" ]; then echo "::error::WebAudit budgets or fail-on threshold violated — see the job summary."; exit 1; fi
+        if [ "$CODE" != "0" ]; then echo "::error::WebAudit could not complete the audit (exit $CODE)."; exit "$CODE"; fi

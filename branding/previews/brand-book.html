@@ -1,0 +1,553 @@
+<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WebAudit AI · Brand book</title>
+<link rel="stylesheet" href="../tokens/semantic-tokens.css"><link rel="icon" href="../assets/favicons/favicon.svg">
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../assets/fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url(../assets/fonts/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(../assets/fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url(../assets/fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;src:url(../assets/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;src:url(../assets/fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2")}
+*{box-sizing:border-box}body{margin:0;background:var(--wa-canvas);color:var(--wa-text);font:15px/1.6 var(--wa-font-sans);-webkit-font-smoothing:antialiased}
+code,.mono{font-family:var(--wa-font-mono);font-size:.86em}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--wa-canvas);border-bottom:1px solid var(--wa-border);display:flex;gap:16px;overflow-x:auto;padding:12px 24px;font-size:13px}
+nav.toc a{color:var(--wa-text-muted);text-decoration:none;white-space:nowrap}nav.toc a:hover{color:var(--wa-text)}
+nav.toc button{margin-left:auto;background:var(--wa-surface);color:var(--wa-text);border:1px solid var(--wa-border-input);border-radius:6px;padding:4px 10px;font:inherit;cursor:pointer}
+h1{font-size:44px;letter-spacing:-.03em;line-height:1.1;margin:28px 0 12px}h2{font-size:26px;letter-spacing:-.02em;margin:64px 0 8px;padding-top:12px;border-top:1px solid var(--wa-border)}h3{font-size:15px;margin:28px 0 10px}
+p.lead{font-size:18px;color:var(--wa-text-secondary);max-width:760px}.muted{color:var(--wa-text-muted)}
+.prov{display:inline-block;background:var(--wa-success-subtle);color:var(--wa-success);border-radius:4px;padding:2px 8px;font-size:12px;font-weight:600}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}.g3{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.g4{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.card{background:var(--wa-surface);border:1px solid var(--wa-border);border-radius:var(--wa-radius-lg);padding:20px}
+.logo-tile{border-radius:var(--wa-radius-lg);border:1px solid var(--wa-border);padding:28px;display:grid;place-items:center;min-height:150px}.logo-tile.light{background:#fff}.logo-tile.dark{background:#0B1220}
+.logo-tile img{max-width:100%;max-height:80px}
+figure{margin:0}figcaption{font-size:12px;color:var(--wa-text-muted);margin-top:6px}
+.clear{position:relative;display:inline-block;padding:32px;background:#0B1220;border-radius:10px}.clear::after{content:"";position:absolute;inset:32px;outline:1px dashed #5CE0BE88}.clear img{height:56px;display:block}
+.donts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.dont{background:#fff;border-radius:10px;padding:20px;display:grid;place-items:center;height:120px;position:relative;overflow:hidden}
+.dont::before{content:"✕";position:absolute;top:6px;right:10px;color:#B91C1C;font-weight:700}.dont img{height:36px}
+.swatch{background:var(--wa-surface);border:1px solid var(--wa-border);border-radius:10px;padding:12px;font-size:12px}.swatch span{display:block;height:56px;border-radius:6px;margin-bottom:10px;border:1px solid var(--wa-border)}.swatch b{display:block;font-size:13px}.swatch small{display:block;color:var(--wa-text-muted)}
+.sev{display:inline-flex;align-items:center;gap:6px;font-weight:500;font-size:13px}.sev-ic{display:inline-flex}
+.scale{display:flex;flex-wrap:wrap;gap:18px}
+.chart{display:flex;gap:4px}.chart span{width:48px;height:36px;border-radius:4px}
+.spec{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;align-items:baseline}.spec dt{color:var(--wa-text-muted);font-size:12px}.spec dd{margin:0}
+.icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.icons div{display:flex;align-items:center;gap:10px;background:var(--wa-surface);border:1px solid var(--wa-border);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--wa-text-secondary)}.icons svg{color:var(--wa-accent)}
+.illus{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.illus figure{background:var(--wa-surface);border:1px solid var(--wa-border);border-radius:10px;padding:16px;text-align:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:6px;padding:8px 14px;font:500 13px var(--wa-font-sans);border:1px solid transparent;cursor:pointer}
+.btn.primary{background:var(--wa-accent);color:var(--wa-on-accent)}.btn.primary:hover{background:var(--wa-accent-hover)}.btn.secondary{background:var(--wa-surface);color:var(--wa-text);border-color:var(--wa-border-strong)}.btn.ghost{background:transparent;color:var(--wa-text-secondary)}.btn.danger{background:var(--wa-danger-subtle);color:var(--wa-danger);border-color:var(--wa-danger)}
+.btn:focus-visible,.input:focus-visible{outline:2px solid var(--wa-focus-ring);outline-offset:2px}.btn[disabled]{opacity:.5;cursor:not-allowed}
+.input{background:var(--wa-surface);border:1px solid var(--wa-border-input);border-radius:6px;padding:9px 12px;color:var(--wa-text);font:14px var(--wa-font-sans);width:100%}
+.url{display:flex;gap:8px}.url .input{height:46px;font-size:15px}
+table.dt{width:100%;border-collapse:collapse;font-size:13px}.dt th{text-align:left;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--wa-text-muted);font-weight:500;border-bottom:1px solid var(--wa-border);padding:8px 12px}.dt td{border-bottom:1px solid var(--wa-border);padding:9px 12px}.dt tr:hover td{background:var(--wa-surface-raised)}.n{text-align:right;font-variant-numeric:tabular-nums}
+.conf{border:1px solid var(--wa-border-strong);border-radius:4px;padding:1px 6px;font-size:11px;color:var(--wa-text-secondary)}
+.prog{height:6px;background:var(--wa-surface-overlay);border-radius:99px;overflow:hidden}.prog i{display:block;height:100%;width:62%;background:var(--wa-accent);border-radius:99px}
+.toast{display:flex;gap:10px;align-items:flex-start;background:var(--wa-surface-overlay);border:1px solid var(--wa-border-strong);border-radius:10px;padding:12px 14px;box-shadow:var(--wa-shadow-overlay);font-size:13px;max-width:420px}
+.callout{border:1px solid var(--wa-border);border-left:3px solid var(--wa-warning);background:var(--wa-warning-subtle);padding:12px 14px;border-radius:8px;font-size:13px}
+.voice td{vertical-align:top;font-size:13px}.voice td:first-child{color:var(--wa-danger)}.voice td:last-child{color:var(--wa-success)}
+.assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}.assets img{width:100%;border-radius:8px;border:1px solid var(--wa-border);display:block}
+@media print{nav.toc{display:none}body{background:#fff}h2{break-before:page}.wrap{padding:0 12mm}}
+</style></head><body>
+<nav class="toc" aria-label="Contents"><a href="#overview">Overview</a><a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Typography</a><a href="#icons">Iconography</a><a href="#illustrations">Illustrations</a><a href="#data">Data viz</a><a href="#ui">UI</a><a href="#voice">Voice</a><a href="#assets">Assets</a>
+<button type="button" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'">Toggle theme</button></nav>
+<main class="wrap">
+<section id="overview"><span class="prov">Version 1.0 · approved 16 October 2026</span>
+<h1>WebAudit AI brand book</h1>
+<p class="lead">Open-source website intelligence for marketers and developers. The identity is built to be read under pressure: calm surfaces, one signal colour, and evidence in every frame.</p>
+<div class="grid g3" style="margin-top:24px">
+<div class="card"><b>Positioning</b><p class="muted">An open-source, locally hosted platform that finds, explains and prioritises website quality issues — with evidence.</p></div>
+<div class="card"><b>Personality</b><p class="muted">Precise · evidence-led · calm · technical but approachable · honest about uncertainty.</p></div>
+<div class="card"><b>Tagline</b><p class="muted">“Evidence for every fix.” — brand promise: “Turn website complexity into actionable clarity.”</p></div></div></section>
+
+<section id="logo"><h2>Logo</h2><p class="muted">Concept: <b>A · Inspected Window</b>. A browser window whose chrome bar is intact but whose lower corners open into inspection brackets; a single signal diamond sits where the evidence is found.</p>
+<div class="grid g2" style="margin-top:16px"><figure><div class="logo-tile light"><img src="../assets/logos/primary-horizontal.svg" alt="Primary horizontal"></div><figcaption>Primary horizontal · <code>primary-horizontal.svg</code></figcaption></figure><figure><div class="logo-tile dark"><img src="../assets/logos/primary-horizontal-reverse.svg" alt="Reverse (dark backgrounds)"></div><figcaption>Reverse (dark backgrounds) · <code>primary-horizontal-reverse.svg</code></figcaption></figure><figure><div class="logo-tile light"><img src="../assets/logos/stacked.svg" alt="Stacked"></div><figcaption>Stacked · <code>stacked.svg</code></figcaption></figure><figure><div class="logo-tile dark"><img src="../assets/logos/stacked-reverse.svg" alt="Stacked reverse"></div><figcaption>Stacked reverse · <code>stacked-reverse.svg</code></figcaption></figure><figure><div class="logo-tile light"><img src="../assets/logos/symbol.svg" alt="Symbol"></div><figcaption>Symbol · <code>symbol.svg</code></figcaption></figure><figure><div class="logo-tile light"><img src="../assets/logos/symbol-small.svg" alt="Symbol — small-size master (≤ 32 px)"></div><figcaption>Symbol — small-size master (≤ 32 px) · <code>symbol-small.svg</code></figcaption></figure><figure><div class="logo-tile light"><img src="../assets/logos/mono-dark-horizontal.svg" alt="Monochrome dark"></div><figcaption>Monochrome dark · <code>mono-dark-horizontal.svg</code></figcaption></figure><figure><div class="logo-tile dark"><img src="../assets/logos/mono-light-horizontal.svg" alt="Monochrome light"></div><figcaption>Monochrome light · <code>mono-light-horizontal.svg</code></figcaption></figure></div>
+<h3>Clear space & minimum size</h3><div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center"><div class="clear"><img src="../assets/logos/primary-horizontal-reverse.svg" alt="Logo with clear-space guide"></div>
+<dl class="spec"><dt>Clear space</dt><dd>Half the symbol height on every side.</dd><dt>Minimum size</dt><dd>Horizontal lockup 24 px tall (screen) / 8 mm (print). Symbol 16 px — use the small-size master at ≤ 32 px.</dd><dt>Colour</dt><dd>Two-tone on navy or white; single-colour when printing one ink.</dd></dl></div>
+<h3>Don’t</h3><div class="donts">
+<div class="dont"><img src="../assets/logos/primary-horizontal.svg" style="transform:scaleX(1.5)" alt=""><figcaption style="position:absolute;bottom:6px;color:#566275">Stretch or distort</figcaption></div>
+<div class="dont"><img src="../assets/logos/primary-horizontal.svg" style="filter:hue-rotate(160deg)" alt=""><figcaption style="position:absolute;bottom:6px;color:#566275">Recolour the signal</figcaption></div>
+<div class="dont"><img src="../assets/logos/primary-horizontal.svg" style="transform:rotate(-10deg)" alt=""><figcaption style="position:absolute;bottom:6px;color:#566275">Rotate</figcaption></div>
+<div class="dont"><img src="../assets/logos/primary-horizontal.svg" style="filter:drop-shadow(0 4px 6px #0008)" alt=""><figcaption style="position:absolute;bottom:6px;color:#566275">Add effects or shadows</figcaption></div>
+<div class="dont" style="background:#FAB219"><img src="../assets/logos/primary-horizontal.svg" alt=""><figcaption style="position:absolute;bottom:6px;color:#3b2a00">Place on busy or low-contrast colour</figcaption></div>
+</div></section>
+
+<section id="colour"><h2>Colour</h2><p class="muted">Semantic tokens from <code>tokens/colors.json</code>; ratios computed live against <code>surface</code>. Toggle the theme to see light values. All 60 required WCAG 2.2 AA pairs pass (<code>qa/contrast-report.md</code>).</p>
+<div class="grid g4" style="margin-top:16px" data-theme="dark"><div class="swatch"><span style="background:#0B1220"></span><b>canvas</b><code>#0B1220</code><small>1.07:1 on surface</small></div><div class="swatch"><span style="background:#111A29"></span><b>surface</b><code>#111A29</code><small>1.00:1 on surface</small></div><div class="swatch"><span style="background:#162133"></span><b>surface-raised</b><code>#162133</code><small>1.08:1 on surface</small></div><div class="swatch"><span style="background:#1D2B40"></span><b>surface-overlay</b><code>#1D2B40</code><small>1.22:1 on surface</small></div><div class="swatch"><span style="background:#26344A"></span><b>border</b><code>#26344A</code><small>1.39:1 on surface</small></div><div class="swatch"><span style="background:#5F7190"></span><b>border-input</b><code>#5F7190</code><small>3.53:1 on surface</small></div><div class="swatch"><span style="background:#F2F6FD"></span><b>text</b><code>#F2F6FD</code><small>16.10:1 on surface</small></div><div class="swatch"><span style="background:#C3CEDD"></span><b>text-secondary</b><code>#C3CEDD</code><small>10.96:1 on surface</small></div><div class="swatch"><span style="background:#9AABC2"></span><b>text-muted</b><code>#9AABC2</code><small>7.46:1 on surface</small></div><div class="swatch"><span style="background:#5CE0BE"></span><b>accent</b><code>#5CE0BE</code><small>10.69:1 on surface</small></div><div class="swatch"><span style="background:#4ADE9F"></span><b>success</b><code>#4ADE9F</code><small>10.17:1 on surface</small></div><div class="swatch"><span style="background:#FBBF24"></span><b>warning</b><code>#FBBF24</code><small>10.45:1 on surface</small></div><div class="swatch"><span style="background:#F87171"></span><b>danger</b><code>#F87171</code><small>6.31:1 on surface</small></div><div class="swatch"><span style="background:#7AA7FA"></span><b>info</b><code>#7AA7FA</code><small>7.26:1 on surface</small></div></div>
+<h3>Light theme</h3><div class="grid g4"><div class="swatch"><span style="background:#F6F8FB"></span><b>canvas</b><code>#F6F8FB</code><small>1.06:1 on surface</small></div><div class="swatch"><span style="background:#FFFFFF"></span><b>surface</b><code>#FFFFFF</code><small>1.00:1 on surface</small></div><div class="swatch"><span style="background:#F1F4F9"></span><b>surface-raised</b><code>#F1F4F9</code><small>1.10:1 on surface</small></div><div class="swatch"><span style="background:#E7ECF3"></span><b>surface-overlay</b><code>#E7ECF3</code><small>1.19:1 on surface</small></div><div class="swatch"><span style="background:#DFE5EE"></span><b>border</b><code>#DFE5EE</code><small>1.27:1 on surface</small></div><div class="swatch"><span style="background:#7C899E"></span><b>border-input</b><code>#7C899E</code><small>3.54:1 on surface</small></div><div class="swatch"><span style="background:#0B1220"></span><b>text</b><code>#0B1220</code><small>18.72:1 on surface</small></div><div class="swatch"><span style="background:#334155"></span><b>text-secondary</b><code>#334155</code><small>10.35:1 on surface</small></div><div class="swatch"><span style="background:#566275"></span><b>text-muted</b><code>#566275</code><small>6.18:1 on surface</small></div><div class="swatch"><span style="background:#0B7A66"></span><b>accent</b><code>#0B7A66</code><small>5.26:1 on surface</small></div><div class="swatch"><span style="background:#03644A"></span><b>success</b><code>#03644A</code><small>7.18:1 on surface</small></div><div class="swatch"><span style="background:#8A4B06"></span><b>warning</b><code>#8A4B06</code><small>6.80:1 on surface</small></div><div class="swatch"><span style="background:#B91C1C"></span><b>danger</b><code>#B91C1C</code><small>6.47:1 on surface</small></div><div class="swatch"><span style="background:#1D4ED8"></span><b>info</b><code>#1D4ED8</code><small>6.70:1 on surface</small></div></div>
+<h3>Severity & status — never colour alone</h3><div class="scale"><span class="sev"><span class="sev-ic" style="color:#D03B3B"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 16h.01" />
+  <path d="M12 8v4" />
+  <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" />
+</svg>
+</span>Critical</span><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span><span class="sev"><span class="sev-ic" style="color:#4C8DF6"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" />
+</svg>
+</span>Low</span><span class="sev"><span class="sev-ic" style="color:#8A94A6"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="1" />
+  <circle cx="12" cy="12" r="10" />
+</svg>
+</span>Informational</span><span class="sev"><span class="sev-ic" style="color:#16A06B"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="m16 9-5.5 5.5L8 12" />
+</svg>
+</span>Passed</span><span class="sev"><span class="sev-ic" style="color:#6B778A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10.1 2.182a10 10 0 0 1 3.8 0" />
+  <path d="M13.9 21.818a10 10 0 0 1-3.8 0" />
+  <path d="M17.609 3.721a10 10 0 0 1 2.69 2.7" />
+  <path d="M2.182 13.9a10 10 0 0 1 0-3.8" />
+  <path d="M20.279 17.609a10 10 0 0 1-2.7 2.69" />
+  <path d="M21.818 10.1a10 10 0 0 1 0 3.8" />
+  <path d="M3.721 6.391a10 10 0 0 1 2.7-2.69" />
+  <path d="M6.391 20.279a10 10 0 0 1-2.69-2.7" />
+</svg>
+</span>Not tested</span></div>
+<p class="muted" style="font-size:13px;margin-top:8px">Fixed scale in both themes. Every use pairs a distinct icon with its label; "Not tested" additionally uses a dashed outline / 45° hatch in charts.</p></section>
+
+<section id="type"><h2>Typography</h2><p class="muted">Inter for interface and reports; JetBrains Mono for URLs, rule ids, selectors and logs. Both SIL OFL 1.1 — bundled in <code>assets/fonts</code> with licences.</p>
+<div class="card" style="margin-top:16px">
+<div style="font-size:44px;font-weight:600;letter-spacing:-.03em;line-height:1.1">Display 44 · Actionable clarity</div>
+<div style="font-size:28px;font-weight:600;letter-spacing:-.02em;margin-top:14px">H1 28 · Audit overview</div>
+<div style="font-size:20px;font-weight:600;letter-spacing:-.01em;margin-top:10px">H2 20 · Issues in this category</div>
+<div style="font-size:16px;font-weight:600;margin-top:10px">H3 16 · Evidence</div>
+<p style="font-size:14px;color:var(--wa-text-secondary);max-width:680px">Body 14/21 — Findings are grouped by rule and inferred template, ranked by severity, reach and confidence, and always show the pages they were tested on.</p>
+<p style="font-size:12px;color:var(--wa-text-muted)">Caption 12 — Lighthouse lab data with simulated throttling.</p>
+<p class="mono" style="color:var(--wa-text-secondary)">Mono 13 — M08-TRACKING-BEFORE-CONSENT · https://example.com/pricing?utm=REDACTED</p>
+<p style="font-variant-numeric:tabular-nums;font-size:20px;font-weight:600">1,491 / 2,016 · 74%</p></div></section>
+
+<section id="icons"><h2>Iconography</h2><p class="muted">Lucide (ISC licence), 1.5–2 px stroke, 16/20/24 px. Category icons below; AI uses one restrained mark and only on AI-generated content.</p>
+<div class="icons" style="margin-top:16px"><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" />
+</svg>
+Technical SEO</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 14 4-4" />
+  <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+</svg>
+Performance</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="16" cy="4" r="1" />
+  <path d="m18 19 1-7-6 1" />
+  <path d="m5 8 3-3 5.5 3-2.36 3.5" />
+  <path d="M4.24 14.5a5 5 0 0 0 6.88 6" />
+  <path d="M13.76 17.5a5 5 0 0 0-6.88-6" />
+</svg>
+Accessibility</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg>
+Analytics</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+</svg>
+Privacy & consent</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M14 4.1 12 6" />
+  <path d="m5.1 8-2.9-.8" />
+  <path d="m6 12-1.9 2" />
+  <path d="M7.2 2.2 8 5.1" />
+  <path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z" />
+</svg>
+Conversion / UX</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />
+  <path d="M4 6h.01" />
+  <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" />
+  <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" />
+  <path d="M12 18h.01" />
+  <path d="M17.99 11.66A6 6 0 0 1 15.77 16.67" />
+  <circle cx="12" cy="12" r="2" />
+  <path d="m13.41 10.59 5.66-5.66" />
+</svg>
+Crawling</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" />
+</svg>
+AI interpretation</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13 5h8" />
+  <path d="M13 12h8" />
+  <path d="M13 19h8" />
+  <path d="m3 17 2 2 4-4" />
+  <path d="m3 7 2 2 4-4" />
+</svg>
+Recommendations</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <path d="M10 9H8" />
+  <path d="M16 13H8" />
+  <path d="M16 17H8" />
+</svg>
+Reports</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+Warnings</div><div><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 16h.01" />
+  <path d="M12 8v4" />
+  <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" />
+</svg>
+Critical</div></div></section>
+
+<section id="illustrations"><h2>Illustrations</h2><p class="muted">Built from the logo’s primitives — window bar, inspection brackets, signal diamond. One accent element per illustration.</p>
+<div class="illus" style="margin-top:16px"><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-no-audit d-no-audit"><title id="t-no-audit">No audit created</title><desc id="d-no-audit">An empty browser window outline with an outlined signal diamond.</desc><path d="M38 18 H122 a8 8 0 0 1 8 8 V88 a8 8 0 0 1 -8 8 H38 a8 8 0 0 1 -8 -8 V26 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"/><path d="M30 36 H130" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"/><circle cx="40" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="48" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="56" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><path d="M80 48 L92 60 L80 72 L68 60 Z" fill="none" stroke="var(--wa-illus-signal, #2EC9A3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>No audit created · <code>no-audit.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-scanning d-scanning"><title id="t-scanning">Website scan in progress</title><desc id="d-scanning">A browser window with a horizontal scan line moving down its content.</desc><path d="M38 18 H122 a8 8 0 0 1 8 8 V88 a8 8 0 0 1 -8 8 H38 a8 8 0 0 1 -8 -8 V26 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 36 H130" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="48" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="56" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><path d="M42 50 H96" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 62 H84" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 74 H72" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H124" fill="none" stroke="var(--wa-illus-signal, #2EC9A3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M124 62 L130 68 L124 74 L118 68 Z" fill="var(--wa-illus-signal, #2EC9A3)"/></svg><figcaption>Website scan in progress · <code>scanning.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-audit-complete d-audit-complete"><title id="t-audit-complete">Audit complete</title><desc id="d-audit-complete">A browser window framed by inspection brackets with a signal diamond at its centre.</desc><path d="M38 18 H122 a8 8 0 0 1 8 8 V36 H30 V26 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 70 V88 a8 8 0 0 0 8 8 H54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M130 70 V88 a8 8 0 0 1 -8 8 H106" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 52 L94 66 L80 80 L66 66 Z" fill="var(--wa-illus-signal, #2EC9A3)"/></svg><figcaption>Audit complete · <code>audit-complete.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-no-issues d-no-issues"><title id="t-no-issues">No issues found</title><desc id="d-no-issues">A browser window with a check mark, indicating no failing checks in the tested scope.</desc><path d="M38 18 H122 a8 8 0 0 1 8 8 V88 a8 8 0 0 1 -8 8 H38 a8 8 0 0 1 -8 -8 V26 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 36 H130" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="48" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="56" cy="27" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="80" cy="66" r="16" fill="none" stroke="var(--wa-illus-ok, #16A06B)" stroke-width="3"/><path d="M72 66 L78 72 L89 60" fill="none" stroke="var(--wa-illus-ok, #16A06B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>No issues found · <code>no-issues.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-audit-failed d-audit-failed"><title id="t-audit-failed">Audit failed</title><desc id="d-audit-failed">A browser window with a broken frame edge and a warning symbol.</desc><path d="M38 18 H122 a8 8 0 0 1 8 8 V54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M130 70 V88 a8 8 0 0 1 -8 8 H38 a8 8 0 0 1 -8 -8 V26 a8 8 0 0 1 8 -8" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 36 H130" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 52 L96 80 H64 Z" fill="none" stroke="var(--wa-illus-danger, #E5484D)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 61 V69" fill="none" stroke="var(--wa-illus-danger, #E5484D)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="74.5" r="1.8" fill="var(--wa-illus-danger, #E5484D)"/></svg><figcaption>Audit failed · <code>audit-failed.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-ai-disabled d-ai-disabled"><title id="t-ai-disabled">AI disabled</title><desc id="d-ai-disabled">An outlined signal diamond with a diagonal line, indicating optional AI is turned off.</desc><path d="M80 28 L112 60 L80 92 L48 60 Z" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"/><path d="M60 40 L100 80" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 54 L86 60 L80 66 L74 60 Z" fill="var(--wa-illus-line, #7F8FA6)"/></svg><figcaption>AI disabled · <code>ai-disabled.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-network-error d-network-error"><title id="t-network-error">Network error</title><desc id="d-network-error">Two browser windows with a broken connection between them.</desc><path d="M22 34 H58 a8 8 0 0 1 8 8 V70 a8 8 0 0 1 -8 8 H22 a8 8 0 0 1 -8 -8 V42 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 52 H66" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M102 34 H138 a8 8 0 0 1 8 8 V70 a8 8 0 0 1 -8 8 H102 a8 8 0 0 1 -8 -8 V42 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M94 52 H146" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 56 H74" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 56 H92" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M76 50 L84 62" fill="none" stroke="var(--wa-illus-danger, #E5484D)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>Network error · <code>network-error.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-no-results d-no-results"><title id="t-no-results">No search results</title><desc id="d-no-results">Inspection brackets framing an empty dashed area.</desc><path d="M36 34 V26 a8 8 0 0 1 8 -8 H54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M124 34 V26 a8 8 0 0 0 -8 -8 H106" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 84 V92 a8 8 0 0 0 8 8 H54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M124 84 V92 a8 8 0 0 1 -8 8 H106" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="56" y="44" width="48" height="32" rx="6" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-dasharray="6 7"/></svg><figcaption>No search results · <code>no-results.svg</code></figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-empty-history d-empty-history"><title id="t-empty-history">Empty history</title><desc id="d-empty-history">Three stacked browser window outlines, the front one dashed and empty.</desc><path d="M54 16 H122 a8 8 0 0 1 8 8 V68" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M46 26 H114 a8 8 0 0 1 8 8 V80" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 36 H106 a8 8 0 0 1 8 8 V88 a8 8 0 0 1 -8 8 H38 a8 8 0 0 1 -8 -8 V44 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"/><path d="M30 54 H114" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 7"/><circle cx="40" cy="45" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="48" cy="45" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/><circle cx="56" cy="45" r="2" fill="var(--wa-illus-faint, #7F8FA6)"/></svg><figcaption>Empty history · <code>empty-history.svg</code></figcaption></figure></div></section>
+
+<section id="data"><h2>Data visualisation</h2><p class="muted">Categorical order is fixed and validated (adjacent CVD ΔE ≥ 8, normal-vision ΔE ≥ 15) in both modes. Light slots 1, 5 and 6 are under 3:1 on white — charts always carry visible labels or a table view.</p>
+<h3>Categorical — dark</h3><div class="chart"><span style="background:#199E70" title="#199E70"></span><span style="background:#3987E5" title="#3987E5"></span><span style="background:#D95926" title="#D95926"></span><span style="background:#9085E9" title="#9085E9"></span><span style="background:#C98500" title="#C98500"></span><span style="background:#D55181" title="#D55181"></span></div>
+<h3>Categorical — light</h3><div class="chart"><span style="background:#1BAF7A" title="#1BAF7A"></span><span style="background:#2A78D6" title="#2A78D6"></span><span style="background:#EB6834" title="#EB6834"></span><span style="background:#6250D6" title="#6250D6"></span><span style="background:#EDA100" title="#EDA100"></span><span style="background:#E87BA4" title="#E87BA4"></span></div>
+<h3>Sequential (magnitude)</h3><div class="chart"><span style="background:#E6FAF4" title="#E6FAF4"></span><span style="background:#B5EEDD" title="#B5EEDD"></span><span style="background:#7BE8CB" title="#7BE8CB"></span><span style="background:#2EC9A3" title="#2EC9A3"></span><span style="background:#14A586" title="#14A586"></span><span style="background:#0B7A66" title="#0B7A66"></span><span style="background:#06392F" title="#06392F"></span></div></section>
+
+<section id="ui"><h2>Application UI</h2><p class="muted">Live components styled only with semantic tokens. The production app implements these in <code>apps/web/src/components</code>.</p>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3 style="margin-top:0">Buttons</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary">Start audit</button><button class="btn secondary">Export</button><button class="btn ghost">Cancel</button><button class="btn danger">Delete audit</button><button class="btn primary" disabled>Disabled</button></div></div>
+<div class="card"><h3 style="margin-top:0">URL input</h3><label for="bb-url" style="font-size:12px;color:var(--wa-text-secondary)">Website URL</label><div class="url" style="margin-top:6px"><input id="bb-url" class="input" placeholder="https://www.example.com"><button class="btn primary">Start</button></div></div>
+<div class="card"><h3 style="margin-top:0">Scan progress</h3><div style="display:flex;justify-content:space-between;font-size:13px"><span>Discovery · 87 of 140 URLs</span><span class="muted mono">01:42</span></div><div class="prog" style="margin-top:8px" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Audit progress"><i></i></div></div>
+<div class="card"><h3 style="margin-top:0">Notification</h3><div class="toast"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg style="color:var(--wa-success)"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="m16 9-5.5 5.5L8 12" />
+</svg>
+<div><b>Audit complete</b><div class="muted">47 issue types across 138 pages. Review the top priorities first.</div></div></div></div>
+<div class="card" style="grid-column:1/-1"><h3 style="margin-top:0">Data table</h3><table class="dt"><thead><tr><th>Issue</th><th>Severity</th><th>Confidence</th><th class="n">Affected / tested</th></tr></thead><tbody>
+<tr><td>Marketing/analytics requests fire before consent<div class="muted mono" style="font-size:11px">M08-TRACKING-BEFORE-CONSENT</div></td><td><span class="sev"><span class="sev-ic" style="color:#EC835A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+  <path d="M12 9v4" />
+  <path d="M12 17h.01" />
+</svg>
+</span>High</span></td><td><span class="conf">Potential</span></td><td class="n">9 / 9</td></tr>
+<tr><td>Missing meta description<div class="muted mono" style="font-size:11px">M01-META-DESC-MISSING</div></td><td><span class="sev"><span class="sev-ic" style="color:#FAB219"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" x2="12" y1="8" y2="12" />
+  <line x1="12" x2="12.01" y1="16" y2="16" />
+</svg>
+</span>Medium</span></td><td><span class="conf">Confirmed</span></td><td class="n">12 / 122</td></tr>
+<tr><td>Main landmark missing<div class="muted mono" style="font-size:11px">M03-AXE-LANDMARK-ONE-MAIN</div></td><td><span class="sev"><span class="sev-ic" style="color:#4C8DF6"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" />
+</svg>
+</span>Low</span></td><td><span class="conf">Confirmed</span></td><td class="n">5 / 25</td></tr>
+<tr><td>Lighthouse lab performance score<div class="muted mono" style="font-size:11px">M02-LH-PERFORMANCE</div></td><td><span class="sev"><span class="sev-ic" style="color:#6B778A"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10.1 2.182a10 10 0 0 1 3.8 0" />
+  <path d="M13.9 21.818a10 10 0 0 1-3.8 0" />
+  <path d="M17.609 3.721a10 10 0 0 1 2.69 2.7" />
+  <path d="M2.182 13.9a10 10 0 0 1 0-3.8" />
+  <path d="M20.279 17.609a10 10 0 0 1-2.7 2.69" />
+  <path d="M21.818 10.1a10 10 0 0 1 0 3.8" />
+  <path d="M3.721 6.391a10 10 0 0 1 2.7-2.69" />
+  <path d="M6.391 20.279a10 10 0 0 1-2.69-2.7" />
+</svg>
+</span>Not tested</span></td><td><span class="conf">—</span></td><td class="n">0 / 1</td></tr>
+</tbody></table><p class="muted" style="font-size:12px">Component demo: rule names are real engine rules; counts are illustrative, not scan results.</p></div>
+<div class="card"><h3 style="margin-top:0">Partial result</h3><div class="callout"><b>Partial results.</b> The audit was cancelled after 87 URLs; findings cover only the pages checked before it stopped.</div></div>
+<div class="card"><h3 style="margin-top:0">Empty state</h3><div style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120" role="img" aria-labelledby="t-no-results d-no-results"><title id="t-no-results">No search results</title><desc id="d-no-results">Inspection brackets framing an empty dashed area.</desc><path d="M36 34 V26 a8 8 0 0 1 8 -8 H54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M124 34 V26 a8 8 0 0 0 -8 -8 H106" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 84 V92 a8 8 0 0 0 8 8 H54" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M124 84 V92 a8 8 0 0 1 -8 8 H106" fill="none" stroke="var(--wa-illus-line, #7F8FA6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="56" y="44" width="48" height="32" rx="6" fill="none" stroke="var(--wa-illus-faint, #7F8FA6)" stroke-width="3" stroke-dasharray="6 7"/></svg><p style="margin:6px 0 0;font-weight:500">No issues match these filters</p><p class="muted" style="font-size:13px;margin:2px 0 0">Remove a filter or search for a rule id.</p></div></div>
+</div></section>
+
+<section id="voice"><h2>Voice & messaging</h2><p class="muted">Intelligent but understandable. Evidence-led. Honest about uncertainty. Helpful, never judgmental.</p>
+<table class="dt voice" style="margin-top:12px"><thead><tr><th>Avoid</th><th>Prefer</th></tr></thead><tbody>
+<tr><td>“Your site scores 62/100.”</td><td>“47 issue types across 138 tested pages; 16 rated high.”</td></tr>
+<tr><td>“GA4 is missing.”</td><td>“GA4 was not observed on 16 tested pages.”</td></tr>
+<tr><td>“You are not GDPR compliant.”</td><td>“Trackers fired before any consent choice on 9 pages — an indicator worth reviewing.”</td></tr>
+<tr><td>“AI found every problem.”</td><td>“AI suggestions — hypotheses grounded in the findings above.”</td></tr>
+<tr><td>“Scan failed.”</td><td>“We couldn’t reach that address. Check the URL is public and try again.”</td></tr>
+</tbody></table></section>
+
+<section id="assets"><h2>Digital assets</h2><p class="muted">Rendered by Chromium from HTML sources in <code>assets/*/src</code>. Regenerate with <code>pnpm --filter @webaudit/branding build</code>.</p>
+<div class="assets" style="margin-top:16px"><figure><img src="../assets/github/social-preview.png" loading="lazy" alt="GitHub social preview"><figcaption>GitHub social preview <code>1280×640</code></figcaption></figure><figure><img src="../assets/github/readme-hero.png" loading="lazy" alt="README hero banner"><figcaption>README hero banner <code>1600×520</code></figcaption></figure><figure><img src="../assets/github/feature-evidence.png" loading="lazy" alt="Feature graphic — evidence"><figcaption>Feature graphic — evidence <code>1200×600</code></figcaption></figure><figure><img src="../assets/github/feature-coverage.png" loading="lazy" alt="Feature graphic — coverage"><figcaption>Feature graphic — coverage <code>1200×600</code></figcaption></figure><figure><img src="../assets/github/feature-martech.png" loading="lazy" alt="Feature graphic — MarTech"><figcaption>Feature graphic — MarTech <code>1200×600</code></figcaption></figure><figure><img src="../assets/github/contributor-banner.png" loading="lazy" alt="Contributor banner"><figcaption>Contributor banner <code>1280×400</code></figcaption></figure><figure><img src="../assets/github/release.png" loading="lazy" alt="Release announcement"><figcaption>Release announcement <code>1200×630</code></figcaption></figure><figure><img src="../assets/social/linkedin-launch.png" loading="lazy" alt="LinkedIn launch post"><figcaption>LinkedIn launch post <code>1200×627</code></figcaption></figure><figure><img src="../assets/social/square-announcement.png" loading="lazy" alt="Square announcement"><figcaption>Square announcement <code>1080×1080</code></figcaption></figure><figure><img src="../assets/social/vertical-announcement.png" loading="lazy" alt="Vertical announcement"><figcaption>Vertical announcement <code>1080×1350</code></figcaption></figure><figure><img src="../assets/social/showcase-card.png" loading="lazy" alt="Product showcase card"><figcaption>Product showcase card <code>1200×675</code></figcaption></figure><figure><img src="../assets/social/template-feature.png" loading="lazy" alt="New feature announcement (template)"><figcaption>New feature announcement (template) <code>1200×627</code></figcaption></figure><figure><img src="../assets/social/template-update.png" loading="lazy" alt="Product update (template)"><figcaption>Product update (template) <code>1200×627</code></figcaption></figure><figure><img src="../assets/social/template-contributor.png" loading="lazy" alt="Contributor appreciation (template)"><figcaption>Contributor appreciation (template) <code>1080×1080</code></figcaption></figure><figure><img src="../assets/social/og-default.png" loading="lazy" alt="Default Open Graph image"><figcaption>Default Open Graph image <code>1200×630</code></figcaption></figure></div></section>
+</main></body></html>

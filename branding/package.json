@@ -1,0 +1,19 @@
+{
+  "name": "@webaudit/branding",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "WebAudit AI brand identity: tokens, logo system, generated digital assets and brand book.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "contrast": "node scripts/contrast.mjs",
+    "qa": "node scripts/qa.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "opentype.js": "2.0.0",
+    "playwright": "1.64.1",
+    "lucide-static": "1.57.0"
+  }
+}

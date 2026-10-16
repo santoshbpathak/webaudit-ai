@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Midnight Intelligence — brand v1.0 (branding/tokens/colors.json, approved 2026-10-16).
+ * Components use only these semantic tokens (never raw hex). Dark is the default theme.
+ */
+:root {
+  /* Severity = fixed status scale, identical in both themes; always paired with icon + label. */
+  --sev-critical: #d03b3b;
+  --sev-high: #ec835a;
+  --sev-medium: #fab219;
+  --sev-low: #4c8df6;
+  --sev-info: #8a94a6;
+  --good: #16a06b;
+  --not-tested: #6b778a;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #111a29;
+  --surface-2: #162133;
+  --surface-3: #1d2b40;
+  --line: #26344a;
+  --line-strong: #344660;
+  --line-input: #5f7190;
+  --ink: #f2f6fd;
+  --ink-2: #c3cedd;
+  --muted: #9aabc2;
+  --accent: #5ce0be;
+  --accent-ink: #04221b;
+  --accent-soft: rgb(92 224 190 / 0.12);
+  --ok: #4ade9f;
+  --ok-soft: rgb(74 222 159 / 0.12);
+  --warn: #fbbf24;
+  --warn-soft: rgb(251 191 36 / 0.12);
+  --danger: #f87171;
+  --danger-soft: rgb(248 113 113 / 0.12);
+  --ring: #7be8cb;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --surface-2: #f1f4f9;
+  --surface-3: #e7ecf3;
+  --line: #dfe5ee;
+  --line-strong: #c3ccda;
+  --line-input: #7c899e;
+  --ink: #0b1220;
+  --ink-2: #334155;
+  --muted: #566275;
+  --accent: #0b7a66;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(11 122 102 / 0.09);
+  --ok: #03644a;
+  --ok-soft: rgb(3 100 74 / 0.1);
+  --warn: #8a4b06;
+  --warn-soft: rgb(202 138 4 / 0.12);
+  --danger: #b91c1c;
+  --danger-soft: rgb(185 28 28 / 0.08);
+  --ring: #0b7a66;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-input: var(--line-input);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-sev-critical: var(--sev-critical);
+  --color-sev-high: var(--sev-high);
+  --color-sev-medium: var(--sev-medium);
+  --color-sev-low: var(--sev-low);
+  --color-sev-info: var(--sev-info);
+  --color-good: var(--good);
+  --color-not-tested: var(--not-tested);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+}
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  font-feature-settings: "cv11", "ss01";
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+::selection {
+  background: var(--accent-soft);
+}
+/* Thin, theme-aware scrollbars for dense panels. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

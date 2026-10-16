@@ -1,0 +1,17 @@
+{
+  "name": "@webaudit/modules",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "docs": "tsx scripts/gen-rules-doc.ts"
+  },
+  "dependencies": {
+    "@webaudit/core": "workspace:*",
+    "@webaudit/crawler": "workspace:*"
+  }
+}

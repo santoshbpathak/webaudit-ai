@@ -1,0 +1,25 @@
+{
+  "name": "@webaudit/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "WebAudit AI command-line interface",
+  "bin": {
+    "webaudit": "./bin/webaudit.js"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "dev": "node bin/webaudit.js worker"
+  },
+  "dependencies": {
+    "@webaudit/core": "workspace:*",
+    "@webaudit/db": "workspace:*",
+    "@webaudit/pipeline": "workspace:*",
+    "@webaudit/queue": "workspace:*",
+    "@webaudit/report": "workspace:*",
+    "@webaudit/safety": "workspace:*",
+    "commander": "15.0.0",
+    "playwright": "1.64.1",
+    "tsx": "4.23.15"
+  }
+}

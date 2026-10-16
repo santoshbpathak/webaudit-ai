@@ -1,0 +1,19 @@
+# Secret scanning config: `gitleaks dir .` (working tree) or `gitleaks git .` (history).
+# Extends the default ruleset; only generated build output and one reviewed false
+# positive are excluded.
+title = "WebAudit AI gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated build output and reviewed false positives"
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)\.next/''',
+  '''(^|/)\.turbo/''',
+  '''(^|/)dist/''',
+  '''(^|/)data/''',
+]
+# ci.yml smoke test uses a throwaway token that only exists inside the CI container.
+regexes = ['''ci-token-0123456789abcdef''']

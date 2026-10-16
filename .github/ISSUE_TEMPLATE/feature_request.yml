@@ -1,0 +1,40 @@
+name: Feature request
+description: Suggest a new check, an integration, or an improvement — from a marketing or a technical angle.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation in your own words, e.g. "After each release I manually check that our consent banner blocks LinkedIn Insight until accept."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like WebAudit AI to do?
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        [
+          New audit rule,
+          Existing rule,
+          Reports / exports,
+          Web UI,
+          CLI / GitHub Action,
+          Optional AI,
+          Documentation,
+          Other,
+        ]
+  - type: textarea
+    id: verify
+    attributes:
+      label: How could it be verified?
+      description: For new checks — how would a person confirm the issue manually? Which specification or vendor documentation applies?
+  - type: dropdown
+    id: role
+    attributes:
+      label: You are mainly a…
+      options: [Marketer / SEO, Analytics / MarTech specialist, Accessibility practitioner, Developer, Other]

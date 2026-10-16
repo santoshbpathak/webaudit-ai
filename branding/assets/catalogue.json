@@ -1,0 +1,112 @@
+{
+  "master": "a-inspected-window",
+  "version": "1.0",
+  "generated": "2026-10-16T11:06:44.735Z",
+  "rasters": [
+    {
+      "file": "assets/github/social-preview.png",
+      "source": "assets/github/src/social-preview.html",
+      "width": 1280,
+      "height": 640,
+      "title": "GitHub social preview"
+    },
+    {
+      "file": "assets/github/readme-hero.png",
+      "source": "assets/github/src/readme-hero.html",
+      "width": 1600,
+      "height": 520,
+      "title": "README hero banner"
+    },
+    {
+      "file": "assets/github/feature-evidence.png",
+      "source": "assets/github/src/feature-evidence.html",
+      "width": 1200,
+      "height": 600,
+      "title": "Feature graphic — evidence"
+    },
+    {
+      "file": "assets/github/feature-coverage.png",
+      "source": "assets/github/src/feature-coverage.html",
+      "width": 1200,
+      "height": 600,
+      "title": "Feature graphic — coverage"
+    },
+    {
+      "file": "assets/github/feature-martech.png",
+      "source": "assets/github/src/feature-martech.html",
+      "width": 1200,
+      "height": 600,
+      "title": "Feature graphic — MarTech"
+    },
+    {
+      "file": "assets/github/contributor-banner.png",
+      "source": "assets/github/src/contributor-banner.html",
+      "width": 1280,
+      "height": 400,
+      "title": "Contributor banner"
+    },
+    {
+      "file": "assets/github/release.png",
+      "source": "assets/github/src/release.html",
+      "width": 1200,
+      "height": 630,
+      "title": "Release announcement"
+    },
+    {
+      "file": "assets/social/linkedin-launch.png",
+      "source": "assets/social/src/linkedin-launch.html",
+      "width": 1200,
+      "height": 627,
+      "title": "LinkedIn launch post"
+    },
+    {
+      "file": "assets/social/square-announcement.png",
+      "source": "assets/social/src/square-announcement.html",
+      "width": 1080,
+      "height": 1080,
+      "title": "Square announcement"
+    },
+    {
+      "file": "assets/social/vertical-announcement.png",
+      "source": "assets/social/src/vertical-announcement.html",
+      "width": 1080,
+      "height": 1350,
+      "title": "Vertical announcement"
+    },
+    {
+      "file": "assets/social/showcase-card.png",
+      "source": "assets/social/src/showcase-card.html",
+      "width": 1200,
+      "height": 675,
+      "title": "Product showcase card"
+    },
+    {
+      "file": "assets/social/template-feature.png",
+      "source": "assets/social/src/template-feature.html",
+      "width": 1200,
+      "height": 627,
+      "title": "New feature announcement (template)"
+    },
+    {
+      "file": "assets/social/template-update.png",
+      "source": "assets/social/src/template-update.html",
+      "width": 1200,
+      "height": 627,
+      "title": "Product update (template)"
+    },
+    {
+      "file": "assets/social/template-contributor.png",
+      "source": "assets/social/src/template-contributor.html",
+      "width": 1080,
+      "height": 1080,
+      "title": "Contributor appreciation (template)"
+    },
+    {
+      "file": "assets/social/og-default.png",
+      "source": "assets/social/src/og-default.html",
+      "width": 1200,
+      "height": 630,
+      "title": "Default Open Graph image"
+    }
+  ]
+}

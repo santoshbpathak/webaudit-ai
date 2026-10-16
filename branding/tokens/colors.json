@@ -1,0 +1,295 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "WebAudit AI color tokens \u2014 Midnight Intelligence. Source of truth: semantic-tokens.css is generated from this file by branding/scripts/build.mjs. Version 1.0 (approved 2026-10-16).",
+  "primitive": {
+    "navy": {
+      "950": {
+        "$value": "#070C16"
+      },
+      "900": {
+        "$value": "#0B1220"
+      },
+      "850": {
+        "$value": "#111A29"
+      },
+      "800": {
+        "$value": "#162133"
+      },
+      "750": {
+        "$value": "#1D2B40"
+      },
+      "700": {
+        "$value": "#26344A"
+      },
+      "600": {
+        "$value": "#344660"
+      },
+      "500": {
+        "$value": "#566275"
+      },
+      "400": {
+        "$value": "#7F8FA6"
+      },
+      "300": {
+        "$value": "#9AABC2"
+      },
+      "200": {
+        "$value": "#C3CEDD"
+      },
+      "100": {
+        "$value": "#E3E9F2"
+      },
+      "50": {
+        "$value": "#F2F6FD"
+      }
+    },
+    "signal": {
+      "200": {
+        "$value": "#A8F0DD"
+      },
+      "300": {
+        "$value": "#7BE8CB"
+      },
+      "400": {
+        "$value": "#5CE0BE"
+      },
+      "500": {
+        "$value": "#2EC9A3"
+      },
+      "600": {
+        "$value": "#14A586"
+      },
+      "700": {
+        "$value": "#0B7A66"
+      },
+      "800": {
+        "$value": "#096352"
+      },
+      "900": {
+        "$value": "#06392F"
+      }
+    },
+    "white": {
+      "$value": "#FFFFFF"
+    },
+    "paper": {
+      "$value": "#F6F8FB"
+    }
+  },
+  "status": {
+    "$description": "Fixed scale, identical in both themes. Never colour alone: always icon + label (see WEBAUDIT_AI_BRAND_GUIDELINES.md §14).",
+    "critical": {
+      "$value": "#D03B3B",
+      "icon": "octagon-alert",
+      "label": "Critical"
+    },
+    "high": {
+      "$value": "#EC835A",
+      "icon": "triangle-alert",
+      "label": "High"
+    },
+    "medium": {
+      "$value": "#FAB219",
+      "icon": "circle-alert",
+      "label": "Medium"
+    },
+    "low": {
+      "$value": "#4C8DF6",
+      "icon": "info",
+      "label": "Low"
+    },
+    "info": {
+      "$value": "#8A94A6",
+      "icon": "circle-dot",
+      "label": "Informational"
+    },
+    "passed": {
+      "$value": "#16A06B",
+      "icon": "circle-check",
+      "label": "Passed"
+    },
+    "notTested": {
+      "$value": "#6B778A",
+      "icon": "circle-dashed",
+      "label": "Not tested",
+      "pattern": "45deg hatch"
+    }
+  },
+  "chart": {
+    "$description": "Categorical order is fixed (never cycled). Validated with the dataviz palette validator: lightness band, chroma floor, adjacent CVD \u0394E \u2265 8 and normal-vision \u0394E \u2265 15 pass in both modes. Light mode slots 1, 5, 6 are below 3:1 on white: charts must carry visible labels or a table view.",
+    "light": ["#1BAF7A", "#2A78D6", "#EB6834", "#6250D6", "#EDA100", "#E87BA4"],
+    "dark": ["#199E70", "#3987E5", "#D95926", "#9085E9", "#C98500", "#D55181"],
+    "sequential": ["#E6FAF4", "#B5EEDD", "#7BE8CB", "#2EC9A3", "#14A586", "#0B7A66", "#06392F"]
+  },
+  "theme": {
+    "dark": {
+      "canvas": {
+        "$value": "#0B1220",
+        "use": "App background"
+      },
+      "surface": {
+        "$value": "#111A29",
+        "use": "Cards, panels, sidebar"
+      },
+      "surface-raised": {
+        "$value": "#162133",
+        "use": "Hover rows, inset areas"
+      },
+      "surface-overlay": {
+        "$value": "#1D2B40",
+        "use": "Selected rows, tooltips, menus"
+      },
+      "border": {
+        "$value": "#26344A",
+        "use": "Dividers, card borders"
+      },
+      "border-strong": {
+        "$value": "#344660",
+        "use": "Inputs, hover borders"
+      },
+      "text": {
+        "$value": "#F2F6FD",
+        "use": "Primary text"
+      },
+      "text-secondary": {
+        "$value": "#C3CEDD",
+        "use": "Body copy on surfaces"
+      },
+      "text-muted": {
+        "$value": "#9AABC2",
+        "use": "Labels, captions, metadata"
+      },
+      "text-disabled": {
+        "$value": "#566275",
+        "use": "Disabled text (exempt from 4.5:1, WCAG 1.4.3)"
+      },
+      "accent": {
+        "$value": "#5CE0BE",
+        "use": "Primary actions, focus, active nav"
+      },
+      "accent-hover": {
+        "$value": "#7BE8CB"
+      },
+      "accent-pressed": {
+        "$value": "#2EC9A3"
+      },
+      "accent-subtle": {
+        "$value": "rgba(92, 224, 190, 0.12)",
+        "use": "Selected backgrounds"
+      },
+      "on-accent": {
+        "$value": "#04221B",
+        "use": "Text on accent fills"
+      },
+      "focus-ring": {
+        "$value": "#7BE8CB"
+      },
+      "success": {
+        "$value": "#4ADE9F"
+      },
+      "success-subtle": {
+        "$value": "rgba(74, 222, 159, 0.12)"
+      },
+      "warning": {
+        "$value": "#FBBF24"
+      },
+      "warning-subtle": {
+        "$value": "rgba(251, 191, 36, 0.12)"
+      },
+      "danger": {
+        "$value": "#F87171"
+      },
+      "danger-subtle": {
+        "$value": "rgba(248, 113, 113, 0.12)"
+      },
+      "info": {
+        "$value": "#7AA7FA"
+      },
+      "info-subtle": {
+        "$value": "rgba(122, 167, 250, 0.12)"
+      },
+      "border-input": {
+        "$value": "#5F7190",
+        "use": "Form control edges (\u22653:1, WCAG 1.4.11)"
+      }
+    },
+    "light": {
+      "canvas": {
+        "$value": "#F6F8FB"
+      },
+      "surface": {
+        "$value": "#FFFFFF"
+      },
+      "surface-raised": {
+        "$value": "#F1F4F9"
+      },
+      "surface-overlay": {
+        "$value": "#E7ECF3"
+      },
+      "border": {
+        "$value": "#DFE5EE"
+      },
+      "border-strong": {
+        "$value": "#C3CCDA"
+      },
+      "text": {
+        "$value": "#0B1220"
+      },
+      "text-secondary": {
+        "$value": "#334155"
+      },
+      "text-muted": {
+        "$value": "#566275"
+      },
+      "text-disabled": {
+        "$value": "#9AA5B5"
+      },
+      "accent": {
+        "$value": "#0B7A66"
+      },
+      "accent-hover": {
+        "$value": "#096352"
+      },
+      "accent-pressed": {
+        "$value": "#06392F"
+      },
+      "accent-subtle": {
+        "$value": "rgba(11, 122, 102, 0.09)"
+      },
+      "on-accent": {
+        "$value": "#FFFFFF"
+      },
+      "focus-ring": {
+        "$value": "#0B7A66"
+      },
+      "success": {
+        "$value": "#03644A"
+      },
+      "success-subtle": {
+        "$value": "rgba(3, 100, 74, 0.10)"
+      },
+      "warning": {
+        "$value": "#8A4B06"
+      },
+      "warning-subtle": {
+        "$value": "rgba(202, 138, 4, 0.12)"
+      },
+      "danger": {
+        "$value": "#B91C1C"
+      },
+      "danger-subtle": {
+        "$value": "rgba(185, 28, 28, 0.08)"
+      },
+      "info": {
+        "$value": "#1D4ED8"
+      },
+      "info-subtle": {
+        "$value": "rgba(29, 78, 216, 0.08)"
+      },
+      "border-input": {
+        "$value": "#7C899E",
+        "use": "Form control edges (\u22653:1, WCAG 1.4.11)"
+      }
+    }
+  }
+}
