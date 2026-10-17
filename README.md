@@ -79,19 +79,19 @@ WebAudit AI flags issues and explains why they matter. It does not promise ranki
 
 ## Feature status
 
-| Capability                                                                        | Status                                                                                                                                     |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| 10 audit modules (72 documented rules + dynamic axe rules)                        | ✅ Implemented and tested against a fixture site with planted defects                                                                      |
-| Quick, Smart and Deep audit modes                                                 | ✅ Implemented                                                                                                                             |
-| Web UI: live crawl, issues, evidence, pages, categories, recommendations, compare | ✅ Implemented                                                                                                                             |
-| Exports: HTML, JSON, CSV, Markdown                                                | ✅ Implemented                                                                                                                             |
-| CLI with CI budgets (`--budget`, `--fail-on`)                                     | ✅ Implemented                                                                                                                             |
-| GitHub Action for marketing QA in CI                                              | 🧪 Implemented; its CI self-test runs once the repository is published                                                                     |
-| Docker image and read-only demo mode                                              | ✅ Implemented; image built and smoke-tested locally (token gate, real audit with browser checks and Lighthouse); demo mode covered by e2e |
-| AI executive summary, 30-day roadmap, Q&A over findings                           | 🤖 Optional, needs your own API key or a local model; adapters are mock-tested                                                             |
-| Heuristic and manual-review rules                                                 | 👤 Shown as _Potential_ or _Manual review_; verify before acting                                                                           |
-| Postgres database, S3 artifact storage (scale mode)                               | 🗺️ Planned: interfaces exist, implementations do not                                                                                       |
-| Authenticated crawling, form submission                                           | ⛔ Out of scope by design                                                                                                                  |
+| Capability                                                                        | Status                                                                                        |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| 10 audit modules (72 documented rules + dynamic axe rules)                        | ✅ Implemented and tested against a fixture site with planted defects                         |
+| Quick, Smart and Deep audit modes                                                 | ✅ Implemented                                                                                |
+| Web UI: live crawl, issues, evidence, pages, categories, recommendations, compare | ✅ Implemented                                                                                |
+| Exports: HTML, JSON, CSV, Markdown                                                | ✅ Implemented                                                                                |
+| CLI with CI budgets (`--budget`, `--fail-on`)                                     | ✅ Implemented                                                                                |
+| GitHub Action for marketing QA in CI                                              | ✅ Implemented; self-tested in CI against the fixture site on every change                    |
+| Docker image and read-only demo mode                                              | ✅ Published to GHCR (linux/amd64, linux/arm64); smoke-tested in CI; demo mode covered by e2e |
+| AI executive summary, 30-day roadmap, Q&A over findings                           | 🤖 Optional, needs your own API key or a local model; adapters are mock-tested                |
+| Heuristic and manual-review rules                                                 | 👤 Shown as _Potential_ or _Manual review_; verify before acting                              |
+| Postgres database, S3 artifact storage (scale mode)                               | 🗺️ Planned: interfaces exist, implementations do not                                          |
+| Authenticated crawling, form submission                                           | ⛔ Out of scope by design                                                                     |
 
 ## Quick start
 
@@ -123,13 +123,16 @@ pnpm webaudit doctor                                               # checks Node
 Detailed setup and troubleshooting: [docs/development/installation.md](docs/development/installation.md).
 
 <details>
-<summary><b>Docker</b> (verified locally on macOS / Apple Silicon; the image is about 7 GB)</summary>
+<summary><b>Docker</b> (prebuilt image for linux/amd64 and linux/arm64, about 7 GB)</summary>
 
 ```bash
 export WEBAUDIT_ACCESS_TOKEN=$(openssl rand -hex 24)
-docker compose -f docker/compose.yaml up --build
+docker run --rm -p 127.0.0.1:3000:3000 -e WEBAUDIT_ACCESS_TOKEN \
+  -v webaudit-data:/data --shm-size=1g ghcr.io/santoshbpathak/webaudit-ai:0.1.0
 open "http://127.0.0.1:3000/?token=$WEBAUDIT_ACCESS_TOKEN"
 ```
+
+Or build from source with `docker compose -f docker/compose.yaml up --build`.
 
 The container refuses to listen on a network interface without an access token. See [docs/deploy.md](docs/deploy.md) for cloud deployment and the read-only demo.
 
@@ -230,7 +233,7 @@ See [docs/ai.md](docs/ai.md).
 
 ## Marketing QA in CI
 
-Fail a preview deployment that drops the GA4 tag, ships a pre-ticked opt-in or breaks internal links. The Action will be usable once `v0.1.0` is published:
+Fail a preview deployment that drops the GA4 tag, ships a pre-ticked opt-in or breaks internal links:
 
 ```yaml
 - uses: santoshbpathak/webaudit-ai/action@v0.1.0
