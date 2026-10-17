@@ -13,7 +13,7 @@
     "@webaudit/core": "workspace:*",
     "@webaudit/safety": "workspace:*",
     "cheerio": "1.2.0",
-    "domhandler": "5.0.3",
+    "domhandler": "6.0.1",
     "fast-xml-parser": "5.11.2",
     "robots-parser": "3.0.1"
   },

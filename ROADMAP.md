@@ -1,8 +1,8 @@
 # Roadmap
 
-Status as of 2026-10-16. "Implemented" means it exists in this repository with tests. Everything else is a plan, not a promise. Suggestions are welcome via [feature requests](.github/ISSUE_TEMPLATE/feature_request.yml).
+Status as of 2026-10-17. "Implemented" means it exists in this repository with tests. Everything else is a plan, not a promise. Suggestions are welcome via [feature requests](.github/ISSUE_TEMPLATE/feature_request.yml).
 
-## ✅ Implemented (pre-release)
+## ✅ Implemented in v0.1.0
 
 - **Discovery:** robots.txt (RFC 9309), sitemaps (index and gzip, with caps), link-first frontier, coverage ledger, parameter-trap and depth guards, resumable checkpoints
 - **Audit modes:** Quick, Smart (stratified browser sample by inferred template) and Deep
@@ -14,11 +14,11 @@ Status as of 2026-10-16. "Implemented" means it exists in this repository with t
 - **Optional AI:** executive summary, 30-day roadmap, Q&A (Anthropic or OpenAI-compatible, including local models)
 - **Delivery:** Docker image definition, read-only demo mode
 
-## 🎯 Next: v0.1.0 public release
+## ✅ Released: v0.1.0 (2026-10-16)
 
-- [ ] First CI run on GitHub: lint, tests, e2e, Docker smoke test, Action self-test
-- [ ] Docker image verified locally and published to GHCR
-- [ ] Tag `v0.1.0`, GitHub release notes, social preview set
+- [x] First CI run on GitHub: lint, tests, e2e, Docker smoke test, Action self-test
+- [x] Docker image published to GHCR (linux/amd64, linux/arm64)
+- [x] Tag `v0.1.0` and GitHub release notes
 
 ## 🔜 Planned (v0.2, guided by feedback)
 
