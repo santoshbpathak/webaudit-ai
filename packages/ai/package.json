@@ -16,7 +16,7 @@
     "@webaudit/modules": "workspace:*",
     "@webaudit/report": "workspace:*",
     "@webaudit/safety": "workspace:*",
-    "openai": "7.34.0",
+    "openai": "7.39.0",
     "zod": "4.6.7"
   }
 }
