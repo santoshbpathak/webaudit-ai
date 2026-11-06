@@ -12,7 +12,7 @@
   "dependencies": {
     "@webaudit/core": "workspace:*",
     "chrome-launcher": "1.2.2",
-    "lighthouse": "13.5.0"
+    "lighthouse": "13.6.0"
   },
   "devDependencies": {
     "@webaudit/fixture-site": "workspace:*",
