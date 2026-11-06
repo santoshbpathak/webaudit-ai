@@ -1,6 +1,6 @@
 # WebAudit AI — single image for web UI + audit worker.
 # Playwright base image ships Chromium and all system dependencies.
-FROM mcr.microsoft.com/playwright:v1.64.1-noble
+FROM mcr.microsoft.com/playwright:v1.65.0-noble
 
 ENV NODE_ENV=production \
     PNPM_HOME=/pnpm \
