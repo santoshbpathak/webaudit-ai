@@ -10,10 +10,10 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@axe-core/playwright": "4.13.0",
+    "@axe-core/playwright": "4.14.0",
     "@webaudit/core": "workspace:*",
     "@webaudit/safety": "workspace:*",
-    "playwright": "1.64.1"
+    "playwright": "1.65.0"
   },
   "devDependencies": {
     "@webaudit/fixture-site": "workspace:*"
