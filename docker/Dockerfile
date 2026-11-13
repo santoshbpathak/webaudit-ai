@@ -17,7 +17,8 @@ ENV NODE_ENV=production \
 # this to 0 (docs/security.md, "Browser sandbox").
 ENV WEBAUDIT_CHROME_NO_SANDBOX=1
 
-RUN corepack enable && corepack prepare pnpm@9.12.0 --activate && apt-get update \
+# pnpm via npm, not corepack: the Playwright image's Node (26+) no longer bundles corepack.
+RUN npm install -g pnpm@9.12.0 && apt-get update \
     # make + g++: better-sqlite3 compiles its native addon during install (no prebuilt
     # binary is fetched), and the Playwright base image ships Python but no C++ toolchain.
     && apt-get install -y --no-install-recommends tini make g++ \
