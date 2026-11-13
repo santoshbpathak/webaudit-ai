@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@webaudit/core": "workspace:*",
-    "chrome-launcher": "1.2.2",
-    "lighthouse": "13.5.0"
+    "chrome-launcher": "1.2.3",
+    "lighthouse": "13.6.0"
   },
   "devDependencies": {
     "@webaudit/fixture-site": "workspace:*",
     "@webaudit/safety": "workspace:*",
-    "playwright": "1.64.1"
+    "playwright": "1.65.0"
   }
 }
