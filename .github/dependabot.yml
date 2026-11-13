@@ -29,3 +29,4 @@ updates:
       # The Playwright base image must match the `playwright` npm version exactly; bump
       # both together by hand (Dockerfile FROM + package.json files).
       - dependency-name: mcr.microsoft.com/playwright
+      - dependency-name: playwright
