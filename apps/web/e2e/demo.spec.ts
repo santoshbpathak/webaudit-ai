@@ -48,7 +48,11 @@ test("issue explorer filters are reflected in the URL and the evidence sheet loa
   const id = await latestAudit(page);
   await page.goto(`/audits/${id}/issues`);
   const rows = page.getByRole("table", { name: /issue types/i }).locator("tbody tr");
+  // Wait for the table to render before taking the baseline; counting too early gave
+  // before = 0, after which "fewer rows than before" can never become true.
+  await expect(rows.first()).toBeVisible();
   const before = await rows.count();
+  expect(before).toBeGreaterThan(1);
   await page.getByRole("button", { name: /^High/ }).click();
   await expect(page).toHaveURL(/severity=high/);
   await expect.poll(() => rows.count()).toBeLessThan(before);
