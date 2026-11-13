@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "ipaddr.js": "2.5.0",
-    "undici": "8.12.1"
+    "undici": "8.12.2"
   }
 }
