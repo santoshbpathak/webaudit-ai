@@ -10,7 +10,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "0.135.0",
+    "@anthropic-ai/sdk": "1.7.0",
     "@webaudit/core": "workspace:*",
     "@webaudit/db": "workspace:*",
     "@webaudit/modules": "workspace:*",
