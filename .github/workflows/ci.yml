@@ -118,6 +118,10 @@ jobs:
           persist-credentials: false
       - name: Build image
         run: docker build -f docker/Dockerfile -t webaudit-ai:ci .
+      # The image's bundled browsers must match the `playwright` npm version; doctor fails
+      # when Chromium for the installed Playwright is missing (e.g. npm bumped, image not).
+      - name: Doctor inside the image (Chromium matches Playwright)
+        run: docker run --rm --entrypoint node webaudit-ai:ci apps/cli/bin/webaudit.js doctor
       - name: Smoke test (refuses public bind without token, healthy with token)
         run: |
           ! docker run --rm webaudit-ai:ci
