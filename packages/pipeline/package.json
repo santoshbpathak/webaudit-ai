@@ -23,7 +23,7 @@
     "@webaudit/report": "workspace:*",
     "@webaudit/safety": "workspace:*",
     "@webaudit/scoring": "workspace:*",
-    "playwright": "1.65.0"
+    "playwright": "1.65.1"
   },
   "devDependencies": {
     "@webaudit/fixture-site": "workspace:*"

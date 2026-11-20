@@ -10,13 +10,13 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "1.7.0",
+    "@anthropic-ai/sdk": "1.9.0",
     "@webaudit/core": "workspace:*",
     "@webaudit/db": "workspace:*",
     "@webaudit/modules": "workspace:*",
     "@webaudit/report": "workspace:*",
     "@webaudit/safety": "workspace:*",
-    "openai": "7.55.0",
+    "openai": "7.57.0",
     "zod": "4.6.7"
   }
 }
