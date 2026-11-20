@@ -13,7 +13,7 @@
     "@axe-core/playwright": "4.14.0",
     "@webaudit/core": "workspace:*",
     "@webaudit/safety": "workspace:*",
-    "playwright": "1.65.0"
+    "playwright": "1.65.1"
   },
   "devDependencies": {
     "@webaudit/fixture-site": "workspace:*"
