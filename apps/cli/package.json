@@ -19,7 +19,7 @@
     "@webaudit/report": "workspace:*",
     "@webaudit/safety": "workspace:*",
     "commander": "15.1.0",
-    "playwright": "1.65.0",
+    "playwright": "1.65.1",
     "tsx": "4.23.15"
   }
 }
